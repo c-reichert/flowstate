@@ -4,20 +4,26 @@ A Claude Code plugin that combines **strict development discipline** with **comp
 
 ## Philosophy
 
-Two existing plugins each solve half the problem:
+Flowstate is inspired by ideas from several sources:
 
-- **[Superpowers](https://github.com/obra/superpowers)** — TDD enforcement, guided brainstorming, worktree isolation. Excellent discipline, but all session learning is lost when the context ends.
-- **[Compound Engineering](https://github.com/EveryInc/every-marketplace)** — Knowledge persistence via `docs/solutions/`, parallel multi-agent review, plan deepening. Excellent compounding, but no strict TDD or guided design flow.
+- **[Superpowers](https://github.com/obra/superpowers)** — TDD enforcement, guided brainstorming, worktree isolation
+- **[Compound Engineering](https://github.com/EveryInc/every-marketplace)** — Knowledge persistence, parallel multi-agent review, plan deepening
+- **[Anthropic's prompting research](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering)** — Enforcement spectrum, progressive disclosure, context engineering, anti-rationalization patterns
 
-Flowstate merges both: the discipline to write quality code *and* the infrastructure to learn from every session.
+None of these alone delivered what we wanted: strict development discipline *and* knowledge that compounds across sessions. Flowstate takes the ideas we liked from each and builds its own opinionated workflow.
 
 ## The Workflow
 
 ```
-brainstorm → plan → [deepen] → work → review → compound
-                                          ↑           |
-                                          └───────────┘
-                                        knowledge feeds back
+    ┌───────────────────────────────────────────────────────┐
+    │                                                       │
+    │  brainstorm → plan → [deepen] → work → review → compound
+    │       ▲                  ▲                        │
+    │       │                  │                        │
+    │       └──────────────────┴────────────────────────┘
+    │              knowledge feeds back into
+    │           planning, reviewing, and building
+    └───────────────────────────────────────────────────────┘
 ```
 
 | Step | Command | What It Does |
@@ -166,4 +172,4 @@ your-project/
 
 ## License
 
-MIT
+[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) — free for non-commercial use with attribution. Share-alike required for derivative works.
