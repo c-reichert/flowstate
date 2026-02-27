@@ -96,11 +96,29 @@ Only after all verification passes can you proceed to Phase 4.
 
 ---
 
-## Phase 4: Ship
+## Phase 4: Review
 
-### 4.1 Final Commit
+**Invoke `/flowstate:review`** to run multi-agent code review on the completed work.
 
-If any uncommitted changes remain after all tasks:
+This is NOT optional. Do NOT skip to shipping. The pipeline is: Execute → Verify → **Review** → Compound → Ship.
+
+The review dispatches 5 parallel agents (security, performance, simplicity, architecture, patterns) plus the learnings-researcher. Address all P1 findings before proceeding. Triage P2/P3 with the user.
+
+---
+
+## Phase 5: Compound
+
+**Invoke `/flowstate:compound`** to capture learnings from this work.
+
+This is NOT optional. Every non-trivial implementation session produces insights worth preserving. Skip only if the user explicitly declines.
+
+---
+
+## Phase 6: Ship
+
+### 6.1 Final Commit
+
+If any uncommitted changes remain (e.g., review fixes):
 
 ```bash
 git status
@@ -115,23 +133,22 @@ EOF
 )"
 ```
 
-### 4.2 Finish the Branch
+### 6.2 Finish the Branch
 
 **Invoke the flowstate:finishing-a-branch skill.**
 
 The skill handles: presenting options (merge / PR / keep / discard), executing the chosen option, worktree cleanup, and branch cleanup.
 
-### 4.3 Update Plan Status
+### 6.3 Update Plan Status
 
 Update the plan's YAML frontmatter: `status: active` to `status: completed`
 
-### 4.4 Notify User
+### 6.4 Notify User
 
 - Summarize what was completed
 - Link to PR (if created)
 - Report test results
 - Note any follow-up work needed
-- Suggest: "Run `/flowstate:review` for multi-agent code review, or `/flowstate:compound` to capture learnings from this work."
 
 ---
 
