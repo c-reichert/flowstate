@@ -202,16 +202,62 @@ Use the **AskUserQuestion tool** to present these options:
 **Options:**
 1. **Run `/flowstate:deepen-plan`** -- Enhance each section with parallel research agents (best practices, edge cases, code examples)
 2. **Start `/flowstate:work`** -- Begin TDD implementation of this plan
-3. **Review and refine** -- Improve the plan through structured discussion
-4. **Done for now** -- Return later when ready
+3. **Generate parallel session prompt** -- Produce a deep handoff prompt for implementing this plan in a separate Claude Code session or agent
+4. **Review and refine** -- Improve the plan through structured discussion
+5. **Done for now** -- Return later when ready
 
 Based on selection:
 - **`/flowstate:deepen-plan`** -- Invoke the deepen-plan command with the plan file path
 - **`/flowstate:work`** -- Invoke the work command with the plan file path
+- **Generate parallel session prompt** -- See "Parallel Session Prompt Generation" below
 - **Review and refine** -- Discuss improvements, update the plan, re-present options
 - **Done for now** -- Acknowledge and remind the user of the plan file path
 
 Loop back to options after refinement until user selects a workflow command or chooses done.
+
+---
+
+## Parallel Session Prompt Generation
+
+When the user selects "Generate parallel session prompt", produce a comprehensive handoff prompt they can paste into a new Claude Code session (or use to spawn a parallel agent). The prompt must be **self-contained** — the new session has zero context from this one.
+
+**Include in the prompt:**
+
+1. **Project context** — repo path, tech stack, key architecture decisions
+2. **Full plan reference** — the exact path to the plan file (`docs/plans/...`)
+3. **Brainstorm reference** — path to the brainstorm doc if one exists
+4. **Key decisions made** — summarize all decisions from brainstorming/planning so the new session doesn't re-ask
+5. **Learnings to check** — mention `docs/solutions/` and `critical-patterns.md` if they exist
+6. **Explicit instructions** — tell the new session to:
+   - Read the plan file completely before starting
+   - Run `/flowstate:work <plan-path>` to execute
+   - Follow TDD discipline (the session-start hook will reinforce this)
+   - Commit incrementally
+   - Run `/flowstate:review` after completion
+   - Run `/flowstate:compound` to capture learnings
+7. **Constraints and scope** — anything the user said about what to prioritize, skip, or be careful about
+
+**Format the prompt as a single copyable code block** so the user can paste it directly.
+
+**Example structure:**
+```
+You are implementing a feature in [repo]. The design and plan are complete.
+
+## Context
+- Repo: [path]
+- Tech stack: [stack]
+- Key decisions: [list]
+
+## Instructions
+1. Read the plan: [path]
+2. Read the brainstorm for context: [path]
+3. Check docs/solutions/ for relevant past learnings
+4. Run `/flowstate:work [plan-path]` to execute the plan with TDD
+5. After completion, run `/flowstate:review` then `/flowstate:compound`
+
+## Important
+- [Any constraints, priorities, or warnings]
+```
 
 ---
 

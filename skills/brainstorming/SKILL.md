@@ -216,9 +216,10 @@ Commit to git.
 Offer options via AskUserQuestion:
 
 1. **Proceed to planning** — invoke `/flowstate:plan` (auto-detects brainstorm doc)
-2. **Review and refine** — improve the design document
-3. **Ask more questions** — return to Phase 2
-4. **Done for now** — save and return later
+2. **Generate parallel session prompt** — produce a deep handoff prompt containing the full brainstorm context, key decisions, and instructions to run `/flowstate:plan` then `/flowstate:work`, so the user can kick off implementation in a separate Claude Code session or agent. Follow the "Parallel Session Prompt Generation" instructions in the `planning` skill, but adapt the instructions to start from `/flowstate:plan` (since no plan exists yet).
+3. **Review and refine** — improve the design document
+4. **Ask more questions** — return to Phase 2
+5. **Done for now** — save and return later
 
 ## Output Template
 
