@@ -1,0 +1,382 @@
+---
+name: plan
+description: "Transform a brainstorm or feature description into an actionable implementation plan with TDD-structured tasks, informed by past learnings and parallel research."
+disable-model-invocation: true
+argument-hint: "[feature description, brainstorm reference, or improvement idea]"
+---
+
+# Create an Implementation Plan
+
+## Introduction
+
+**Note: The current year is 2026.** Use this when dating plans and searching for recent documentation.
+
+Transform brainstorm outputs, feature descriptions, or improvement ideas into well-structured implementation plans with TDD-structured tasks. Every plan is grounded in codebase research, past learnings, and (when warranted) external best practices.
+
+## Feature Description
+
+<feature_description> #$ARGUMENTS </feature_description>
+
+**If the feature description above is empty, ask the user:** "What would you like to plan? Describe the feature, bug fix, or improvement — or point me to a brainstorm document."
+
+Do not proceed until you have a clear feature description from the user.
+
+---
+
+## Phase 0: Auto-Detect Brainstorm
+
+Before asking questions, search for a recent brainstorm that matches this feature.
+
+```bash
+ls -la docs/brainstorms/*.md 2>/dev/null | head -20
+```
+
+**Relevance criteria — a brainstorm is relevant if:**
+- The topic (from filename or YAML frontmatter `topic:` field) semantically matches the feature description
+- Created within the last 14 days
+- If multiple candidates match, use the most recent one
+
+**If a relevant brainstorm exists:**
+
+1. Read the brainstorm document **thoroughly** — every section matters
+2. Announce: "Found brainstorm from [date]: [topic]. Using as foundation for planning."
+3. Extract and carry forward **ALL** of the following into the plan:
+   - Key decisions and their rationale
+   - Chosen approach and why alternatives were rejected
+   - Constraints and requirements discovered during brainstorming
+   - Open questions (flag these for resolution during planning)
+   - Success criteria and scope boundaries
+   - Any specific technical choices or patterns discussed
+4. **Skip idea refinement** — the brainstorm already answered WHAT to build
+5. Use brainstorm content as the **primary input** to research and planning phases
+6. **The brainstorm is the origin document.** Throughout the plan, reference specific decisions with `(see brainstorm: docs/brainstorms/<filename>)` when carrying forward conclusions. Do not paraphrase decisions in a way that loses their original context — link back to the source.
+7. **Do not omit brainstorm content** — if the brainstorm discussed it, the plan must address it (even if briefly). Scan each brainstorm section before finalizing the plan to verify nothing was dropped.
+
+**If multiple brainstorms could match:**
+Use **AskUserQuestion tool** to ask which brainstorm to use, or whether to proceed without one.
+
+**If no brainstorm found (or not relevant), run idea refinement:**
+
+Refine the idea through collaborative dialogue using the **AskUserQuestion tool**:
+- Ask questions one at a time to understand the idea fully
+- Prefer multiple choice questions when natural options exist
+- Focus on understanding: purpose, constraints, success criteria
+- Continue until the idea is clear OR user says "proceed"
+
+**Gather signals for Phase 2 research decision.** During refinement, note:
+- **User's familiarity**: Do they know the codebase patterns? Are they pointing to examples?
+- **Topic risk**: Security, payments, external APIs warrant more caution
+- **Uncertainty level**: Is the approach clear or open-ended?
+
+---
+
+## Phase 1: Parallel Local Research (Always Runs)
+
+<thinking>
+First, I need to understand the project's conventions, existing patterns, and any documented learnings. This is fast and local — it informs whether external research is needed.
+</thinking>
+
+Run these agents **in parallel** to gather local context:
+
+- Task learnings-researcher(feature_description)
+- Task repo-research-analyst(feature_description)
+
+**What to look for:**
+
+| Agent | Focus |
+|-------|-------|
+| **learnings-researcher** (Haiku) | Search `docs/solutions/` for relevant past solutions. Grep-first filtering: extract keywords, parallel grep calls by title/tags/module. Always check `docs/solutions/patterns/critical-patterns.md`. Score relevance: strong/moderate/weak. Full read of strong/moderate matches only. Return: distilled summaries with file paths and key insights. |
+| **repo-research-analyst** (Sonnet) | Find existing patterns, CLAUDE.md guidance, similar implementations, technology familiarity, pattern consistency. Return: relevant file paths with line numbers, conventions to follow. |
+
+These findings inform the next phase.
+
+---
+
+## Phase 2: Conditional External Research
+
+Based on signals from Phase 0 refinement and findings from Phase 1, decide on external research.
+
+**Decision tree:**
+
+| Signal | Action |
+|--------|--------|
+| **High-risk topics** (security, payments, external APIs, data privacy) | **ALWAYS research** — the cost of missing something is too high |
+| **Strong local context** (good patterns, CLAUDE.md has guidance, familiar tech, user knows what they want) | **Skip external research** — local patterns suffice |
+| **Uncertainty or unfamiliar territory** (user exploring, no codebase examples, new technology) | **Research** — external perspective is valuable |
+
+**Announce the decision and proceed.** Brief explanation, then continue. User can redirect if needed.
+
+Examples:
+- "Your codebase has solid patterns for this. Proceeding without external research."
+- "This involves payment processing, so I'll research current best practices first."
+- "This uses a framework we haven't seen in the codebase. Researching documentation."
+
+**If research needed, spawn in parallel:**
+
+- Task best-practices-researcher(feature_description)
+  - Model: Sonnet
+  - Current industry standards, real-world examples, community best practices
+  - Uses WebSearch for current info (2025-2026)
+
+- Task framework-docs-researcher(feature_description)
+  - Model: Haiku
+  - Framework/library documentation via Context7 MCP
+  - Resolve library ID, query docs, return relevant snippets
+
+---
+
+## Phase 3: Spec-Flow Analysis
+
+After research completes, spawn the spec-flow analyzer to validate and refine the feature specification:
+
+- Task spec-flow-analyzer(feature_description, research_findings)
+  - Model: Opus
+  - Map all user flows and permutations
+  - Identify missing error handling
+  - Find edge cases and ambiguities
+  - Validate acceptance criteria completeness
+  - Return: flow map, edge cases, missing handling, questions for clarification
+
+**Review spec-flow analysis results:**
+- Incorporate identified gaps or edge cases into the plan
+- Update acceptance criteria based on findings
+- Flag any unresolvable ambiguities for the user
+
+---
+
+## Phase 4: Consolidate Research
+
+After all research phases complete, merge findings into a unified context:
+
+- **Relevant file paths** from repo research (e.g., `app/services/example_service.py:42`)
+- **Institutional learnings** from `docs/solutions/` with key insights and gotchas to avoid
+- **External documentation URLs** and best practices (if external research was done)
+- **Edge cases** discovered by spec-flow-analyzer
+- **CLAUDE.md conventions** that apply to this work
+- **Related issues or PRs** discovered
+
+**Optional validation:** Briefly summarize consolidated findings and ask the user if anything looks off or missing before proceeding to plan writing.
+
+---
+
+## Phase 5: Write the Plan
+
+### Choose Detail Level
+
+Select based on complexity — simpler is mostly better:
+
+| Level | When to Use | Includes |
+|-------|-------------|----------|
+| **MINIMAL** | Quick fix, small bug, clear single-file change | Problem + acceptance criteria + context + MVP code |
+| **MORE** | Standard feature, multi-file change | MINIMAL + background + technical considerations + system-wide impact |
+| **A LOT** | Complex feature, architectural change, multi-phase work | MORE + detailed implementation phases + alternatives considered + risk mitigation |
+
+### Plan Structure
+
+**YAML Frontmatter (all levels):**
+
+```yaml
+---
+title: [Plan Title]
+type: [feat|fix|refactor]
+status: active
+date: YYYY-MM-DD
+origin: docs/brainstorms/YYYY-MM-DD-<topic>-brainstorm.md  # if originated from brainstorm
+detail_level: [minimal|more|a_lot]
+---
+```
+
+**Title and Filename:**
+- Draft clear, searchable title using conventional format (e.g., `feat: Add user authentication`)
+- Convert to filename: `YYYY-MM-DD-<type>-<descriptive-name>-plan.md`
+- Example: `feat: Add User Authentication` becomes `2026-02-27-feat-add-user-authentication-plan.md`
+- Keep it descriptive (3-5 words after prefix) so plans are findable by context
+
+### Sections by Detail Level
+
+**MINIMAL** includes:
+- Overview (problem/feature description)
+- Acceptance Criteria
+- Research Context (learnings, existing patterns)
+- Implementation Tasks (TDD-structured)
+- Sources
+
+**MORE** adds:
+- Problem Statement / Motivation
+- Technical Considerations
+- System-Wide Impact (interaction graph, error propagation, state lifecycle, API surface parity, integration test scenarios)
+- Dependencies and Risks
+
+**A LOT** adds:
+- Detailed Implementation Phases
+- Alternative Approaches Considered
+- Risk Analysis and Mitigation
+- Resource Requirements
+- Documentation Plan
+
+### TDD Task Structure (ALL Detail Levels)
+
+**CRITICAL: Regardless of detail level, every implementation task follows this TDD structure:**
+
+```markdown
+### Task N: [Component Name]
+
+**Files:**
+- Create: `exact/path/to/new_file.py`
+- Modify: `exact/path/to/existing_file.py:123-145`
+- Test: `tests/exact/path/to/test_file.py`
+
+**Step 1: Write the failing test**
+```[language]
+def test_specific_behavior():
+    result = function(input)
+    assert result == expected
+```
+
+**Step 2: Run test to verify it fails**
+Run: `[test command] tests/path/test_file.py::test_name -v`
+Expected: FAIL with "[specific failure reason — e.g., function not defined]"
+
+**Step 3: Write minimal implementation**
+```[language]
+def function(input):
+    return expected
+```
+
+**Step 4: Run test to verify it passes**
+Run: `[test command] tests/path/test_file.py::test_name -v`
+Expected: PASS
+
+**Step 5: Commit**
+```bash
+git add tests/path/test_file.py src/path/file.py
+git commit -m "feat(scope): add specific feature"
+```
+```
+
+**Include learnings references where relevant:**
+- "Avoid N+1 queries here — see `docs/solutions/performance-issues/n-plus-one-fix.md`"
+- "Use the retry pattern from `docs/solutions/integration-issues/api-retry-strategy.md`"
+- "Watch for the timezone edge case documented in `docs/solutions/runtime-errors/timezone-conversion.md`"
+
+### Research Context Section
+
+Include at the top of the plan, after Overview:
+
+```markdown
+## Research Context
+
+### Relevant Learnings
+- [Title] (docs/solutions/[category]/[file].md) — [key insight]
+
+### Existing Patterns
+- [file:line] — [what pattern to follow]
+
+### Best Practices
+- [recommendation from external research]
+
+### Edge Cases
+- [edge case from spec-flow-analyzer] — [handling strategy]
+```
+
+---
+
+## Phase 6: Save Plan
+
+```bash
+mkdir -p docs/plans/
+```
+
+Use the Write tool to save the complete plan to `docs/plans/YYYY-MM-DD-<type>-<descriptive-name>-plan.md`.
+
+Confirm: "Plan written to `docs/plans/[filename]`"
+
+Then commit:
+
+```bash
+git add docs/plans/YYYY-MM-DD-<type>-<descriptive-name>-plan.md
+git commit -m "docs: add plan for [brief description]"
+```
+
+---
+
+## Phase 7: Offer Options
+
+Use the **AskUserQuestion tool** to present these options:
+
+**Question:** "Plan ready at `docs/plans/[filename]`. What would you like to do next?"
+
+**Options:**
+1. **Run `/flowstate:deepen-plan`** — Enhance each section with parallel research agents (best practices, edge cases, code examples)
+2. **Start `/flowstate:work`** — Begin TDD implementation of this plan
+3. **Review and refine** — Improve the plan through structured discussion
+4. **Done for now** — Return later when ready
+
+Based on selection:
+- **`/flowstate:deepen-plan`** — Invoke the deepen-plan command with the plan file path
+- **`/flowstate:work`** — Invoke the work command with the plan file path
+- **Review and refine** — Discuss improvements, update the plan, re-present options
+- **Done for now** — Acknowledge and remind the user of the plan file path
+
+Loop back to options after refinement until user selects a workflow command or chooses done.
+
+---
+
+## Plan Output Template (Complete Reference)
+
+```markdown
+---
+title: [Plan Title]
+type: [feat|fix|refactor]
+status: active
+date: YYYY-MM-DD
+origin: docs/brainstorms/YYYY-MM-DD-<topic>-brainstorm.md
+detail_level: [minimal|more|a_lot]
+---
+
+# [Plan Title]
+
+## Overview
+[Problem/feature description]
+
+## Research Context
+
+### Relevant Learnings
+- [Title] (docs/solutions/[category]/[file].md) — [key insight]
+
+### Existing Patterns
+- [file:line] — [what pattern to follow]
+
+### Best Practices
+- [recommendation from research]
+
+### Edge Cases
+- [edge case] — [handling strategy]
+
+## Acceptance Criteria
+- [ ] Criterion 1
+- [ ] Criterion 2
+
+## Implementation Tasks
+
+### Task 1: [Component]
+[TDD-structured steps: test → verify fail → implement → verify pass → commit]
+
+### Task 2: [Component]
+[TDD-structured steps: test → verify fail → implement → verify pass → commit]
+
+## Sources
+- Brainstorm: docs/brainstorms/[file]
+- Learnings: docs/solutions/[files]
+- External: [URLs]
+```
+
+---
+
+## Reminders
+
+- **NEVER CODE.** This command produces a plan, not implementation.
+- **Every task must be TDD-structured** — test first, verify failure, implement, verify pass, commit.
+- **Reference learnings** wherever relevant — this is how the compounding flywheel works.
+- **The brainstorm is the origin document** — if one exists, the plan must honor all decisions made there.
+- **Pipeline mode:** If invoked from an automated workflow (LFG or similar), skip all AskUserQuestion calls. Make decisions automatically and proceed to writing the plan without interactive prompts.

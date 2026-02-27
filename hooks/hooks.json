@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Flowstate plugin loaded. Commands: /flowstate:brainstorm, /flowstate:plan, /flowstate:deepen-plan, /flowstate:work, /flowstate:review, /flowstate:deep-review, /flowstate:compound'",
+            "async": false
+          }
+        ]
+      }
+    ]
+  }
+}
