@@ -4,6 +4,9 @@
   "owner": {
     "name": "Christian"
   },
+  "metadata": {
+    "description": "Hybrid development workflow combining TDD discipline with knowledge compounding"
+  },
   "plugins": [
     {
       "name": "flowstate",
