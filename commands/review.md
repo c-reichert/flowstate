@@ -269,49 +269,17 @@ After fixing P1s (and any P2/P3 the user chose to fix):
 
 ---
 
-## Receiving Review Feedback Protocol
+## Applying Review Findings
 
-When applying review findings, follow this protocol:
+When applying findings from the review agents, use the **`receiving-code-review`** skill for the full protocol:
+- READ -> UNDERSTAND -> VERIFY -> EVALUATE -> RESPOND -> IMPLEMENT
+- YAGNI check before implementing any suggestion
+- Push back with technical reasoning when warranted
+- Implementation order: clarify first, blocking issues, simple fixes, complex fixes
 
-### 1. READ
-Read the complete feedback without reacting. Understand the full scope before acting.
-
-### 2. UNDERSTAND
-Restate the issue in your own words. If you can't explain it clearly, you don't understand it yet.
-
-### 3. VERIFY
-Check against the actual codebase — is this finding accurate? Reviewers can have false positives.
-
-### 4. EVALUATE
-Is this technically sound for THIS codebase? Context matters.
-
-### 5. RESPOND
-Fix it, or push back with technical reasoning.
-
-### 6. IMPLEMENT
-One item at a time. Test each fix before moving to the next.
-
-### When to Push Back
-
-Push back on reviewer suggestions when:
-- **Breaks existing functionality** — the suggestion doesn't account for callers or side effects
-- **Reviewer lacks full context** — they're seeing a diff, not the full system
-- **Violates YAGNI** — suggesting improvements to unused or rarely-used code
-- **Technically incorrect for this stack** — generic advice that doesn't apply here
-
-### YAGNI Check on Suggestions
-
-Before implementing any reviewer suggestion:
-
-```bash
-# Search for actual usage of the code being "improved"
-grep -r "function_name\|ClassName\|method_name" --include="*.py" .
-```
-
-If the code is unused or has zero/one callers, consider:
-- Is this improvement actually needed, or is it "better in theory"?
-- Would removing the code entirely be better than improving it?
-- Is the reviewer optimizing dead code?
+When structuring what reviewers need, see the **`requesting-code-review`** skill for:
+- What to provide (SHA range, description, plan reference)
+- Expected output format (Strengths, Issues by severity, Assessment)
 
 ---
 
@@ -321,6 +289,6 @@ If the code is unused or has zero/one callers, consider:
 - **P1 blocks merge** — no exceptions
 - **Learnings integration** — flag known patterns from docs/solutions/
 - **Todo files** — every finding becomes a trackable file in todos/
-- **Push back is healthy** — not every suggestion improves the code
-- **YAGNI check** — verify code is actually used before "improving" it
+- **Push back is healthy** — not every suggestion improves the code (see `receiving-code-review` skill)
+- **YAGNI check** — verify code is actually used before "improving" it (see `receiving-code-review` skill)
 - **Re-verify after fixes** — fixes can introduce new issues
