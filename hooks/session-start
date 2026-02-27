@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+# SessionStart hook for flowstate plugin
+# Injects core workflow context into every session via additionalContext
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
+PLUGIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
+# Escape string for JSON embedding
+escape_for_json() {
+    local s="$1"
+    s="${s//\\/\\\\}"
+    s="${s//\"/\\\"}"
+    s="${s//$'\n'/\\n}"
+    s="${s//$'\r'/\\r}"
+    s="${s//$'\t'/\\t}"
+    printf '%s' "$s"
+}
+
+# Build the context that gets injected into every session
+context="Flowstate plugin loaded.
+
+## Workflow
+brainstorm → plan → deepen-plan → work → review → compound
+
+## Commands
+  /flowstate:brainstorm    - Guided design session with structured dialogue
+  /flowstate:plan          - Create TDD implementation plan with research agents
+  /flowstate:deepen-plan   - Enhance plan with parallel research per section
+  /flowstate:work          - Execute plan with TDD, worktrees, subagent dispatch
+  /flowstate:review        - 5-agent parallel code review with prioritized findings
+  /flowstate:deep-review   - Extended 14+ agent review with conditional reviewers
+  /flowstate:compound      - Capture learnings to docs/solutions/ for future sessions
+  /flowstate:debug         - 6-step systematic debugging with 3-strike escalation
+
+Start with /flowstate:brainstorm for new features, or /flowstate:debug for bugs.
+
+## Core Rules (Always Active)
+
+### TDD Iron Law
+NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST.
+Cycle: RED (write failing test) → VERIFY RED (run it, see it fail) → GREEN (minimal code to pass) → VERIFY GREEN (run it, see it pass) → REFACTOR.
+If you didn't watch the test fail, you don't know if it tests the right thing.
+Exceptions ONLY with explicit user permission: throwaway prototypes, generated code, config files.
+
+### Verification Before Completion
+NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE.
+Before claiming any status: (1) Identify verification command, (2) Run it fresh, (3) Read complete output, (4) Only then state results.
+If you haven't run the command in THIS message, you cannot claim it passes.
+
+### Brainstorm Before Build
+Do NOT implement, write code, scaffold, or create files until the user's idea has been explored through brainstorming and a design exists. Every project goes through the process — 'too simple' is rationalization.
+
+### Subagent Distrust
+Do not trust implementer reports. Read actual code. The implementer may have finished suspiciously quickly. Spec reviewers must independently verify.
+
+### Knowledge Compounding
+After solving non-trivial problems, capture learnings in docs/solutions/ via /flowstate:compound. Check docs/solutions/ and critical-patterns.md before starting work — past solutions prevent repeated mistakes."
+
+escaped_context=$(escape_for_json "$context")
+
+cat <<EOF
+{
+  "additional_context": "${escaped_context}",
+  "hookSpecificOutput": {
+    "hookEventName": "SessionStart",
+    "additionalContext": "${escaped_context}"
+  }
+}
+EOF
+
+exit 0
