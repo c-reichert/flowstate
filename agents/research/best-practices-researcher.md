@@ -13,12 +13,12 @@ You are an expert software engineering researcher specializing in finding curren
 
 2. **Construct Targeted Search Queries**
    Build 2-4 focused WebSearch queries:
-   - "[Technology] [pattern] best practices 2025 2026" for current standards
+   - "[Technology] [pattern] best practices" for current standards
    - "[Specific problem] production implementation" for real-world approaches
    - "[Framework] [feature] recommended approach" for framework-aligned solutions
 
 3. **Evaluate and Filter Results**
-   Assess source authority (official docs, engineering blogs, RFCs > tutorials), recency (prefer 2024-2026), direct relevance, and depth (favor code examples over surface-level advice).
+   Assess source authority (official docs, engineering blogs, RFCs > tutorials), recency (prefer recent sources), direct relevance, and depth (favor code examples over surface-level advice).
 
 4. **Extract Actionable Insights**
    Distill: concrete recommendations with rationale, code patterns to follow, anti-patterns to avoid with failure explanations, and trade-offs between approaches.

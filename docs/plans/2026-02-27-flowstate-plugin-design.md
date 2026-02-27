@@ -593,7 +593,7 @@ Can't check all boxes? You skipped TDD. Start over.
 
 ### Subagent Prompt Templates
 
-See: `skills/work/prompts/implementer.md`, `skills/work/prompts/spec-reviewer.md`, `skills/work/prompts/quality-reviewer.md`
+Subagent prompts are inlined in `skills/subagent-driven-development/SKILL.md`.
 
 ### Models
 
@@ -962,7 +962,9 @@ Context analyzer: Haiku. Solution extractor: Opus. Related docs finder: Haiku. P
 
 ```
 flowstate/
-├── skills/
+├── .claude-plugin/
+│   └── plugin.json
+├── skills/                        # 16 skills
 │   ├── brainstorming/
 │   │   └── SKILL.md
 │   ├── tdd/
@@ -973,9 +975,33 @@ flowstate/
 │   │   └── assets/
 │   │       ├── resolution-template.md
 │   │       └── critical-pattern-template.md
-│   └── using-worktrees/
+│   ├── using-worktrees/
+│   │   └── SKILL.md
+│   ├── verification-before-completion/
+│   │   └── SKILL.md
+│   ├── writing-plans/
+│   │   └── SKILL.md
+│   ├── subagent-driven-development/
+│   │   └── SKILL.md
+│   ├── finishing-a-branch/
+│   │   └── SKILL.md
+│   ├── receiving-code-review/
+│   │   └── SKILL.md
+│   ├── requesting-code-review/
+│   │   └── SKILL.md
+│   ├── systematic-debugging/
+│   │   └── SKILL.md
+│   ├── document-review/
+│   │   └── SKILL.md
+│   ├── planning/
+│   │   └── SKILL.md
+│   ├── plan-deepening/
+│   │   └── SKILL.md
+│   ├── multi-agent-review/
+│   │   └── SKILL.md
+│   └── deep-code-review/
 │       └── SKILL.md
-├── agents/
+├── agents/                        # 10 agents
 │   ├── research/
 │   │   ├── repo-research-analyst.md
 │   │   ├── learnings-researcher.md
@@ -988,15 +1014,17 @@ flowstate/
 │       ├── simplicity-reviewer.md
 │       ├── architecture-reviewer.md
 │       └── pattern-reviewer.md
-├── commands/
+├── commands/                      # 8 commands
 │   ├── brainstorm.md              # /flowstate:brainstorm
 │   ├── plan.md                    # /flowstate:plan
 │   ├── deepen-plan.md             # /flowstate:deepen-plan
 │   ├── work.md                    # /flowstate:work
 │   ├── review.md                  # /flowstate:review
 │   ├── deep-review.md             # /flowstate:deep-review
-│   └── compound.md                # /flowstate:compound
-├── hooks.json                     # Compaction survival hooks
+│   ├── compound.md                # /flowstate:compound
+│   └── debug.md                   # /flowstate:debug
+├── hooks/
+│   └── hooks.json                 # Session start hooks
 └── README.md
 ```
 

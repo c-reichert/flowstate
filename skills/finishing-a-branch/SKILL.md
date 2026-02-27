@@ -49,6 +49,8 @@ git branch -d <feature-branch>
 
 ### Option 2: Push and Create PR
 
+See the **`requesting-code-review`** skill for what to include in the PR description.
+
 ```bash
 git push -u origin <feature-branch>
 gh pr create --title "<title>" --body "$(cat <<'EOF'

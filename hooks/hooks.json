@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo 'Flowstate plugin loaded. Commands: /flowstate:brainstorm, /flowstate:plan, /flowstate:deepen-plan, /flowstate:work, /flowstate:review, /flowstate:deep-review, /flowstate:compound'",
+            "command": "echo 'Flowstate plugin loaded.\n\nWorkflow: /flowstate:brainstorm → /flowstate:plan → /flowstate:deepen-plan → /flowstate:work → /flowstate:review → /flowstate:compound\n\nCommands:\n  brainstorm    - Guided design session with structured dialogue\n  plan          - Create TDD implementation plan with research agents\n  deepen-plan   - Enhance plan with parallel research per section\n  work          - Execute plan with TDD, worktrees, subagent dispatch\n  review        - 5-agent parallel code review with prioritized findings\n  deep-review   - Extended 14+ agent review with conditional reviewers\n  compound      - Capture learnings to docs/solutions/ for future sessions\n  debug         - 6-step systematic debugging with 3-strike escalation\n\nStart with /flowstate:brainstorm for new features, or /flowstate:debug for bugs.'",
             "async": false
           }
         ]

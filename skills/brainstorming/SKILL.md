@@ -207,7 +207,9 @@ Do NOT proceed to Phase 6 with any unresolved questions. This is a hard gate.
 
 Write the validated design to: `docs/brainstorms/YYYY-MM-DD-<topic>-brainstorm.md`
 
-Use the output template below. Commit to git.
+Use the output template below. Before saving, invoke the **flowstate:document-review** skill for a structured self-review of the brainstorm document. Address any critical or important issues found before committing.
+
+Commit to git.
 
 ### Phase 7: Transition
 
