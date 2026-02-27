@@ -1,6 +1,6 @@
 {
   "name": "flowstate",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Hybrid development workflow combining TDD discipline with knowledge compounding. 10 agents, 8 commands, 16 skills for brainstorming, planning, TDD execution, multi-agent review, and learning capture.",
   "author": {
     "name": "Christian"
