@@ -1,0 +1,86 @@
+# Flowstate Compound Learning Schema
+# Validates YAML frontmatter in docs/solutions/ files
+
+fields:
+  module:
+    type: string
+    description: "Module or area (e.g., 'Authentication', 'API Layer', 'System')"
+    required: true
+
+  date:
+    type: string
+    format: "YYYY-MM-DD"
+    required: true
+
+  problem_type:
+    type: enum
+    required: true
+    values:
+      - build_error
+      - test_failure
+      - runtime_error
+      - performance_issue
+      - database_issue
+      - security_issue
+      - ui_bug
+      - integration_issue
+      - logic_error
+      - developer_experience
+      - workflow_issue
+      - best_practice
+      - documentation_gap
+
+  symptoms:
+    type: array
+    items: string
+    min_items: 1
+    max_items: 5
+    description: "Observable symptoms (error messages, visual issues, crashes)"
+
+  root_cause:
+    type: string
+    description: "Free-text description of the root cause (language-agnostic)"
+    required: true
+
+  resolution_type:
+    type: enum
+    required: true
+    values:
+      - code_fix
+      - config_change
+      - test_fix
+      - dependency_update
+      - environment_setup
+      - workflow_improvement
+      - documentation_update
+
+  severity:
+    type: enum
+    required: true
+    values:
+      - critical   # Blocks production/development, data loss
+      - high       # Impairs core functionality, security issue
+      - medium     # Affects specific feature, performance
+      - low        # Minor issue, edge case
+
+  tags:
+    type: array
+    items: string
+    min_items: 1
+    max_items: 8
+    description: "Searchable keywords (lowercase, hyphen-separated)"
+
+category_mapping:
+  build_error: "docs/solutions/build-errors/"
+  test_failure: "docs/solutions/test-failures/"
+  runtime_error: "docs/solutions/runtime-errors/"
+  performance_issue: "docs/solutions/performance-issues/"
+  database_issue: "docs/solutions/database-issues/"
+  security_issue: "docs/solutions/security-issues/"
+  ui_bug: "docs/solutions/ui-bugs/"
+  integration_issue: "docs/solutions/integration-issues/"
+  logic_error: "docs/solutions/logic-errors/"
+  developer_experience: "docs/solutions/developer-experience/"
+  workflow_issue: "docs/solutions/workflow-issues/"
+  best_practice: "docs/solutions/best-practices/"
+  documentation_gap: "docs/solutions/documentation-gaps/"
