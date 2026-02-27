@@ -1,0 +1,15 @@
+{
+  "name": "flowstate-marketplace",
+  "description": "Marketplace for the Flowstate plugin",
+  "owner": {
+    "name": "Christian"
+  },
+  "plugins": [
+    {
+      "name": "flowstate",
+      "description": "Hybrid development workflow combining TDD discipline with knowledge compounding.",
+      "version": "0.1.0",
+      "source": "./"
+    }
+  ]
+}

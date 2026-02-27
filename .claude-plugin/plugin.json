@@ -1,0 +1,15 @@
+{
+  "name": "flowstate",
+  "version": "0.1.0",
+  "description": "Hybrid development workflow combining TDD discipline with knowledge compounding. 10 agents, 7 commands, 4 skills for brainstorming, planning, TDD execution, multi-agent review, and learning capture.",
+  "author": {
+    "name": "Christian"
+  },
+  "repository": "https://github.com/cr/flowstate",
+  "license": "MIT",
+  "keywords": [
+    "tdd", "compound-engineering", "workflow-automation",
+    "code-review", "knowledge-management", "brainstorming",
+    "git-worktrees", "multi-agent"
+  ]
+}
