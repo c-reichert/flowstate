@@ -4,7 +4,6 @@ description: >
   Capture solved problems as categorized documentation with YAML frontmatter.
   Trigger words: "compound", "capture learning", "document solution", "that worked",
   "it's fixed", "working now", "problem solved", "that did it", "doc-fix"
-disable-model-invocation: true
 allowed-tools:
   - Read
   - Write

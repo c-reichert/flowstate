@@ -36,7 +36,7 @@ Do not proceed until you have a valid plan file.
 
 ### 1.2 Create Worktree
 
-Invoke the **flowstate:skill:using-worktrees** skill to create an isolated workspace:
+Invoke the **flowstate:using-worktrees** skill to create an isolated workspace:
 
 ```bash
 feature_name="<kebab-case-feature-name>"
@@ -65,7 +65,7 @@ Parse all tasks from the plan and create a TodoWrite with dependencies and order
 
 ## Phase 2: Per-Task Execution
 
-**Invoke the flowstate:skill:subagent-driven-development skill.**
+**Invoke the flowstate:subagent-driven-development skill.**
 
 For each task in the plan, the skill handles:
 - Dispatching an implementer subagent with full task text and context
@@ -84,7 +84,7 @@ The orchestrator's job during this phase:
 
 ## Phase 3: Verification Gate
 
-**Invoke the flowstate:skill:verification-before-completion skill.**
+**Invoke the flowstate:verification-before-completion skill.**
 
 Before claiming all work is done, the verification gate requires:
 1. Full test suite — run fresh, read complete output, zero failures
@@ -135,7 +135,7 @@ EOF
 
 ### 6.2 Finish the Branch
 
-**Invoke the flowstate:skill:finishing-a-branch skill.**
+**Invoke the flowstate:finishing-a-branch skill.**
 
 The skill handles: presenting options (merge / PR / keep / discard), executing the chosen option, worktree cleanup, and branch cleanup.
 
@@ -154,7 +154,7 @@ Update the plan's YAML frontmatter: `status: active` to `status: completed`
 
 ## Key Principles
 
-- **TDD is not optional** — invoke flowstate:skill:tdd for every implementation task
+- **TDD is not optional** — invoke flowstate:tdd for every implementation task
 - **Subagents do not self-certify** — spec reviewer reads actual code, not the implementer's report
 - **Incremental commits build confidence** — small, tested, focused commits
 - **The plan is your guide, not your prison** — adapt to reality, update the plan

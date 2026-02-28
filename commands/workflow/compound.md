@@ -5,4 +5,4 @@ disable-model-invocation: true
 argument-hint: "[optional: description of what was learned]"
 ---
 
-Invoke the flowstate:skill:compound skill for: $ARGUMENTS
+Invoke the flowstate:compound skill for: $ARGUMENTS

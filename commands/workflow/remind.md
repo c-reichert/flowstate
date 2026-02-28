@@ -51,6 +51,6 @@ After solving non-trivial problems, capture learnings in docs/solutions/ via `/w
 | `/workflow:setup` | Show workflow guide |
 | `/workflow:remind` | This command — re-inject rules |
 
-IMPORTANT: The `/workflow:write-plan` command is NOT Claude Code's built-in plan mode. Do NOT call EnterPlanMode or ExitPlanMode. The write-plan command invokes the flowstate:skill:planning skill to create a TDD implementation plan document.
+IMPORTANT: The `/workflow:write-plan` command is NOT Claude Code's built-in plan mode. Do NOT call EnterPlanMode or ExitPlanMode. The write-plan command invokes the flowstate:planning skill to create a TDD implementation plan document.
 
 Acknowledge these rules and confirm you understand the current workflow state.

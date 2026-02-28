@@ -9,7 +9,7 @@ description: Use when implementation is complete and all tests pass — guides b
 
 ## Step 1: Verify All Tests Pass
 
-**Invoke the flowstate:skill:verification-before-completion skill.** Run the full test suite. Read output. Confirm zero failures.
+**Invoke the flowstate:verification-before-completion skill.** Run the full test suite. Read output. Confirm zero failures.
 
 **If tests fail:** Stop. Report failures. Do NOT proceed to Step 2.
 

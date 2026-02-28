@@ -52,7 +52,7 @@ Do NOT reference a file. Paste the complete task.]
 - Architecture: [relevant context for where this task fits]
 - Conventions: [from CLAUDE.md]
 
-## TDD Rules (invoke flowstate:skill:tdd skill)
+## TDD Rules (invoke flowstate:tdd skill)
 
 THE IRON LAW: NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
 
