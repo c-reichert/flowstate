@@ -196,7 +196,7 @@ Confirm: "Plan deepened and updated at `docs/plans/[filename]`"
 
 ## What This Does NOT Do
 
-- **Does NOT run review agents** -- save that for `/flowstate:review`
+- **Does NOT run review agents** -- save that for `/workflow:review`
 - **Does NOT rewrite the plan** -- only adds research context and insights
 - **Does NOT replace existing content** -- only enhances with new subsections
 - **Does NOT change the plan structure** -- sections stay where they are
@@ -211,7 +211,7 @@ Use the **AskUserQuestion tool** to present:
 **Question:** "Plan deepened with [X] sections enhanced and [Y] learnings applied. What next?"
 
 **Options:**
-1. **Start `/flowstate:work`** -- Begin TDD implementation of this plan
+1. **Start `/workflow:work`** -- Begin TDD implementation of this plan
 2. **Generate parallel session prompt** -- Produce a deep handoff prompt for implementing this plan in a separate Claude Code session or agent. Follow the "Parallel Session Prompt Generation" instructions in the `planning` skill.
 3. **Review the enhanced plan** -- Read through and discuss improvements
 4. **Deepen further** -- Run another round focusing on specific sections

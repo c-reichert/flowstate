@@ -228,7 +228,7 @@ git worktree list    # Verify clean state
 ## Integration
 
 **Called by:**
-- `/flowstate:work` (Phase 1: Setup) — creates worktree before task execution begins
+- `/workflow:work` (Phase 1: Setup) — creates worktree before task execution begins
 
 **Pairs with:**
 - `tdd` skill — TDD enforcement runs inside the worktree

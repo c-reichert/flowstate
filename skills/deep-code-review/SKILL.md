@@ -205,8 +205,8 @@ Follow the same resolution protocol as the multi-agent-review skill:
 
 After resolution is complete, suggest the following:
 
-1. **Run `/flowstate:compound`** to capture learnings from this review — document new patterns discovered, solutions applied, and any recurring issues for future sessions
-2. **Run `/flowstate:review`** on the fixes if substantial changes were made during resolution — fixes can introduce new issues
+1. **Run `/workflow:compound`** to capture learnings from this review — document new patterns discovered, solutions applied, and any recurring issues for future sessions
+2. **Run `/workflow:review`** on the fixes if substantial changes were made during resolution — fixes can introduce new issues
 3. If the branch is ready, use the **`finishing-a-branch`** skill to merge or create a PR
 
 ---
@@ -219,4 +219,4 @@ After resolution is complete, suggest the following:
 - **Cross-cutting concerns deserve attention** — if 3+ agents flag the same issue, it's real
 - **Language-specific reviewers** add precision that generalist agents miss
 - **All findings go to todos/** — same tracking system as standard review
-- **Capture learnings** — always run `/flowstate:compound` after resolving review findings
+- **Capture learnings** — always run `/workflow:compound` after resolving review findings

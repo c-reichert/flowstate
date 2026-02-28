@@ -15,7 +15,7 @@ Execute a plan by dispatching a fresh subagent per task, with two-stage review a
 
 ```
 for each task in plan:
-  1. Dispatch implementer subagent (Opus)
+  1. Dispatch implementer subagent (Sonnet)
   2. Spec compliance review (Sonnet) — MUST pass before step 3
   3. Code quality review (Opus) — only runs after step 2 passes
   4. Incremental commit (if logical unit complete)
@@ -37,7 +37,7 @@ Why: No point reviewing code quality on code that does not meet the spec. Fix wh
 
 ## Implementer Prompt Template
 
-Dispatch with model: **Opus**
+Dispatch with model: **Sonnet**
 
 ```
 You are implementing a task from a plan. Follow TDD strictly.
@@ -135,7 +135,7 @@ will fix and you will re-review.
 
 ## Code Quality Reviewer Prompt Template
 
-Dispatch with model: **Opus**
+Dispatch with model: **Sonnet**
 
 ```
 You are a code quality reviewer. The code has already passed spec

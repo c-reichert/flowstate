@@ -8,6 +8,12 @@ description: >
   session when ready to move to implementation.
 ---
 
+<IMPORTANT>
+This skill is the Flowstate planning workflow. It is NOT Claude Code's built-in plan mode.
+Do NOT call EnterPlanMode or ExitPlanMode at any point during this workflow.
+If you feel the urge to enter "plan mode", STOP — just follow the phases below instead.
+</IMPORTANT>
+
 # Planning: From Idea to Implementation Plan
 
 Transform brainstorm outputs, feature descriptions, or improvement ideas into well-structured implementation plans with TDD-structured tasks. Every plan is grounded in codebase research, past learnings, and (when warranted) external best practices.
@@ -200,15 +206,15 @@ Use the **AskUserQuestion tool** to present these options:
 **Question:** "Plan ready at `docs/plans/[filename]`. What would you like to do next?"
 
 **Options:**
-1. **Run `/flowstate:deepen-plan`** -- Enhance each section with parallel research agents (best practices, edge cases, code examples)
-2. **Start `/flowstate:work`** -- Begin TDD implementation of this plan
+1. **Run `/workflow:deepen-plan`** -- Enhance each section with parallel research agents (best practices, edge cases, code examples)
+2. **Start `/workflow:work`** -- Begin TDD implementation of this plan
 3. **Generate parallel session prompt** -- Produce a deep handoff prompt for implementing this plan in a separate Claude Code session or agent
 4. **Review and refine** -- Improve the plan through structured discussion
 5. **Done for now** -- Return later when ready
 
 Based on selection:
-- **`/flowstate:deepen-plan`** -- Invoke the deepen-plan command with the plan file path
-- **`/flowstate:work`** -- Invoke the work command with the plan file path
+- **`/workflow:deepen-plan`** -- Invoke the deepen-plan command with the plan file path
+- **`/workflow:work`** -- Invoke the work command with the plan file path
 - **Generate parallel session prompt** -- See "Parallel Session Prompt Generation" below
 - **Review and refine** -- Discuss improvements, update the plan, re-present options
 - **Done for now** -- Acknowledge and remind the user of the plan file path
@@ -230,11 +236,11 @@ When the user selects "Generate parallel session prompt", produce a comprehensiv
 5. **Learnings to check** — mention `docs/solutions/` and `critical-patterns.md` if they exist
 6. **Explicit instructions** — tell the new session to:
    - Read the plan file completely before starting
-   - Run `/flowstate:work <plan-path>` to execute
+   - Run `/workflow:work <plan-path>` to execute
    - Follow TDD discipline (the session-start hook will reinforce this)
    - Commit incrementally
-   - Run `/flowstate:review` after completion
-   - Run `/flowstate:compound` to capture learnings
+   - Run `/workflow:review` after completion
+   - Run `/workflow:compound` to capture learnings
 7. **Constraints and scope** — anything the user said about what to prioritize, skip, or be careful about
 
 **Format the prompt as a single copyable code block** so the user can paste it directly.
@@ -252,8 +258,8 @@ You are implementing a feature in [repo]. The design and plan are complete.
 1. Read the plan: [path]
 2. Read the brainstorm for context: [path]
 3. Check docs/solutions/ for relevant past learnings
-4. Run `/flowstate:work [plan-path]` to execute the plan with TDD
-5. After completion, run `/flowstate:review` then `/flowstate:compound`
+4. Run `/workflow:work [plan-path]` to execute the plan with TDD
+5. After completion, run `/workflow:review` then `/workflow:compound`
 
 ## Important
 - [Any constraints, priorities, or warnings]

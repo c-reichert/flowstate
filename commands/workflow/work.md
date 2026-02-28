@@ -1,5 +1,5 @@
 ---
-name: work
+name: workflow:work
 description: "Execute an implementation plan task-by-task with strict TDD discipline, worktree isolation, subagent dispatch, and two-stage code review. Produces tested, committed, PR-ready code."
 disable-model-invocation: true
 argument-hint: "[path to plan file in docs/plans/]"
@@ -98,9 +98,9 @@ Only after all verification passes can you proceed to Phase 4.
 
 ## Phase 4: Review
 
-**Invoke `/flowstate:review`** to run multi-agent code review on the completed work.
+**Invoke `/workflow:review`** to run multi-agent code review on the completed work.
 
-This is NOT optional. Do NOT skip to shipping. The pipeline is: Execute → Verify → **Review** → Compound → Ship.
+This is NOT optional. Do NOT skip to shipping. The pipeline is: Execute -> Verify -> **Review** -> Compound -> Ship.
 
 The review dispatches 5 parallel agents (security, performance, simplicity, architecture, patterns) plus the learnings-researcher. Address all P1 findings before proceeding. Triage P2/P3 with the user.
 
@@ -108,7 +108,7 @@ The review dispatches 5 parallel agents (security, performance, simplicity, arch
 
 ## Phase 5: Compound
 
-**Invoke `/flowstate:compound`** to capture learnings from this work.
+**Invoke `/workflow:compound`** to capture learnings from this work.
 
 This is NOT optional. Every non-trivial implementation session produces insights worth preserving. Skip only if the user explicitly declines.
 

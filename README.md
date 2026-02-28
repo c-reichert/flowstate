@@ -15,27 +15,29 @@ None of these alone delivered what we wanted: strict development discipline *and
 ## The Workflow
 
 ```
-    ┌───────────────────────────────────────────────────────┐
-    │                                                       │
-    │  brainstorm → plan → [deepen] → work → review → compound
-    │       ▲                  ▲                        │
-    │       │                  │                        │
-    │       └──────────────────┴────────────────────────┘
+    ┌───────────────────────────────────────────────────────────────┐
+    │                                                               │
+    │  brainstorm → write-plan → [deepen] → work → review → compound
+    │       ▲                       ▲                           │
+    │       │                       │                           │
+    │       └───────────────────────┴───────────────────────────┘
     │              knowledge feeds back into
     │           planning, reviewing, and building
-    └───────────────────────────────────────────────────────┘
+    └───────────────────────────────────────────────────────────────┘
 ```
 
 | Step | Command | What It Does |
 |------|---------|--------------|
-| 1 | `/flowstate:brainstorm` | Guided design — one question at a time, explore approaches, validate decisions |
-| 2 | `/flowstate:plan` | Research agents + TDD implementation plan with exact file paths and test steps |
-| 3 | `/flowstate:deepen-plan` | *(optional)* Per-section parallel research to add depth, examples, edge cases |
-| 4 | `/flowstate:work` | Worktree isolation → subagent-per-task TDD → two-stage review → ship |
-| 5 | `/flowstate:review` | 5 parallel review agents (security, performance, simplicity, architecture, patterns) |
-| 5b | `/flowstate:deep-review` | Extended 14+ agent swarm with conditional reviewers |
-| 6 | `/flowstate:compound` | Capture learnings to `docs/solutions/` — searchable by future sessions |
-| | `/flowstate:debug` | 6-step systematic debugging with 3-strike escalation |
+| 1 | `/workflow:brainstorm` | Guided design — one question at a time, explore approaches, validate decisions |
+| 2 | `/workflow:write-plan` | Research agents + TDD implementation plan with exact file paths and test steps |
+| 3 | `/workflow:deepen-plan` | *(optional)* Per-section parallel research to add depth, examples, edge cases |
+| 4 | `/workflow:work` | Worktree isolation → subagent-per-task TDD → two-stage review → ship |
+| 5 | `/workflow:review` | 5 parallel review agents (security, performance, simplicity, architecture, patterns) |
+| 5b | `/workflow:deep-review` | Extended 14+ agent swarm with conditional reviewers |
+| 6 | `/workflow:compound` | Capture learnings to `docs/solutions/` — searchable by future sessions |
+| | `/workflow:debug` | 6-step systematic debugging with 3-strike escalation |
+| | `/workflow:setup` | Show workflow pipeline, commands, and getting-started guide |
+| | `/workflow:remind` | Re-inject core rules when Claude drifts from the workflow |
 
 Every command can be used independently or as part of the full loop.
 
@@ -44,8 +46,8 @@ Every command can be used independently or as part of the full loop.
 ```
 ┌─────────────────────────────────────────────────────────┐
 │                    COMMANDS (orchestrators)              │
-│  brainstorm · plan · deepen-plan · work · review ·      │
-│  deep-review · compound · debug                         │
+│  brainstorm · write-plan · deepen-plan · work · review ·│
+│  deep-review · compound · debug · setup · remind        │
 │                         │                               │
 │                    invoke ▼                              │
 │              ┌──────────────────────┐                    │
@@ -143,9 +145,9 @@ claude plugin update flowstate@flowstate-marketplace
 ```
 your-project/
 ├── docs/
-│   ├── brainstorms/          # Design documents from /flowstate:brainstorm
-│   ├── plans/                # Implementation plans from /flowstate:plan
-│   └── solutions/            # Captured learnings from /flowstate:compound
+│   ├── brainstorms/          # Design documents from /workflow:brainstorm
+│   ├── plans/                # Implementation plans from /workflow:write-plan
+│   └── solutions/            # Captured learnings from /workflow:compound
 │       ├── bugs/
 │       ├── performance/
 │       ├── best-practices/
@@ -158,17 +160,16 @@ your-project/
 
 - **16 skills** — brainstorming, TDD, planning, verification, debugging, code review, knowledge capture, and more
 - **10 agents** — 5 research (repo analyst, learnings, best practices, framework docs, spec flow) + 5 review (security, performance, simplicity, architecture, patterns)
-- **8 commands** — lean orchestrators that sequence the workflow
+- **10 commands** — lean orchestrators that sequence the workflow
 - **Language-agnostic** — works with any tech stack
 
 ## Model Allocation
 
-| Role | Model | Why |
-|------|-------|-----|
-| User-facing dialogue, code writing | Opus | Quality matters for creative work |
-| Security, performance, architecture review | Opus | Deep reasoning required |
-| Simplicity, pattern review | Sonnet | Bounded judgment calls |
-| Learnings search, framework docs | Haiku | Mechanical grep + classify |
+| Role | Model | Count | Why |
+|------|-------|-------|-----|
+| Security review, spec-flow analysis, code quality review, solution extraction, prevention strategy | Opus | 5 | High-consequence reasoning where mistakes are costly |
+| Implementer, architecture review, performance review, simplicity review, pattern review, repo research, best practices, plan deepening | Sonnet | 11 | Strong structured analysis at 2-3x speed, near-Opus SWE-bench |
+| Learnings search, framework docs, brainstorm research, compound research, session-start, spec research | Haiku | 6 | Mechanical grep + classify tasks |
 
 ## License
 

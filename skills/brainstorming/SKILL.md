@@ -46,7 +46,7 @@ digraph brainstorming {
     node [shape=box, style=rounded];
 
     assess [label="Phase 0: Assess Clarity"];
-    skip [label="Skip to /flowstate:plan" shape=doublecircle];
+    skip [label="Skip to /workflow:write-plan" shape=doublecircle];
     research [label="Phase 1: Repo Research\n(Sonnet subagent)"];
     dialogue [label="Phase 2: Collaborative Dialogue\n(one question at a time)"];
     approaches [label="Phase 3: Propose Approaches"];
@@ -55,7 +55,7 @@ digraph brainstorming {
     save [label="Phase 6: Save Design Doc"];
     transition [label="Phase 7: Transition"];
 
-    plan [label="/flowstate:plan" shape=doublecircle];
+    plan [label="/workflow:write-plan" shape=doublecircle];
     refine [label="Refine design" shape=doublecircle];
     more [label="Ask more questions" shape=doublecircle];
     done [label="Done for now" shape=doublecircle];
@@ -97,7 +97,7 @@ Before asking questions, assess whether full brainstorming is needed.
 - User seems unsure about the approach
 
 If requirements are clear, offer: "Your requirements are detailed enough to skip brainstorming.
-Shall I proceed directly to `/flowstate:plan`?" This is a skip gate — user must explicitly
+Shall I proceed directly to `/workflow:write-plan`?" This is a skip gate — user must explicitly
 confirm before skipping.
 
 ### Phase 1: Lightweight Repo Research
@@ -215,8 +215,8 @@ Commit to git.
 
 Offer options via AskUserQuestion:
 
-1. **Proceed to planning** — invoke `/flowstate:plan` (auto-detects brainstorm doc)
-2. **Generate parallel session prompt** — produce a deep handoff prompt containing the full brainstorm context, key decisions, and instructions to run `/flowstate:plan` then `/flowstate:work`, so the user can kick off implementation in a separate Claude Code session or agent. Follow the "Parallel Session Prompt Generation" instructions in the `planning` skill, but adapt the instructions to start from `/flowstate:plan` (since no plan exists yet).
+1. **Proceed to planning** — invoke `/workflow:write-plan` (auto-detects brainstorm doc)
+2. **Generate parallel session prompt** — produce a deep handoff prompt containing the full brainstorm context, key decisions, and instructions to run `/workflow:write-plan` then `/workflow:work`, so the user can kick off implementation in a separate Claude Code session or agent. Follow the "Parallel Session Prompt Generation" instructions in the `planning` skill, but adapt the instructions to start from `/workflow:write-plan` (since no plan exists yet).
 3. **Review and refine** — improve the design document
 4. **Ask more questions** — return to Phase 2
 5. **Done for now** — save and return later
@@ -250,7 +250,7 @@ origin: brainstorming session
 - [Question]: [Resolution]
 
 ## Next Steps
-> `/flowstate:plan` for implementation details
+> `/workflow:write-plan` for implementation details
 ```
 
 ## YAGNI Principles

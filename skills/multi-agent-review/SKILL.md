@@ -240,7 +240,7 @@ effort: small|medium|large
 ### Next Steps
 1. **Address P1 findings** (MUST fix before merge)
 2. **Triage P2/P3 findings** with reviewer
-3. **Run `/flowstate:compound`** to capture any new learnings
+3. **Run `/workflow:compound`** to capture any new learnings
 ```
 
 ---

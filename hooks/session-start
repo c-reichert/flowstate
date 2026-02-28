@@ -22,19 +22,23 @@ escape_for_json() {
 context="Flowstate plugin loaded.
 
 ## Workflow
-brainstorm → plan → deepen-plan → work → review → compound
+brainstorm → write-plan → [deepen-plan] → work → review → compound
 
 ## Commands
-  /flowstate:brainstorm    - Guided design session with structured dialogue
-  /flowstate:plan          - Create TDD implementation plan with research agents
-  /flowstate:deepen-plan   - Enhance plan with parallel research per section
-  /flowstate:work          - Execute plan with TDD, worktrees, subagent dispatch
-  /flowstate:review        - 5-agent parallel code review with prioritized findings
-  /flowstate:deep-review   - Extended 14+ agent review with conditional reviewers
-  /flowstate:compound      - Capture learnings to docs/solutions/ for future sessions
-  /flowstate:debug         - 6-step systematic debugging with 3-strike escalation
+  /workflow:brainstorm    - Guided design session with structured dialogue
+  /workflow:write-plan    - Create TDD implementation plan with research agents
+  /workflow:deepen-plan   - Enhance plan with parallel research per section
+  /workflow:work          - Execute plan with TDD, worktrees, subagent dispatch
+  /workflow:review        - 5-agent parallel code review with prioritized findings
+  /workflow:deep-review   - Extended 14+ agent review with conditional reviewers
+  /workflow:compound      - Capture learnings to docs/solutions/ for future sessions
+  /workflow:debug         - 6-step systematic debugging with 3-strike escalation
+  /workflow:setup         - Show workflow pipeline, commands, and getting-started guide
+  /workflow:remind        - Re-inject core rules when Claude drifts from the workflow
 
-Start with /flowstate:brainstorm for new features, or /flowstate:debug for bugs.
+Start with /workflow:brainstorm for new features, or /workflow:debug for bugs.
+
+NOTE: /workflow:write-plan is NOT Claude Code's built-in plan mode. Never call EnterPlanMode/ExitPlanMode during flowstate workflows.
 
 ## Core Rules (Always Active)
 
@@ -56,7 +60,7 @@ Do NOT implement, write code, scaffold, or create files until the user's idea ha
 Do not trust implementer reports. Read actual code. The implementer may have finished suspiciously quickly. Spec reviewers must independently verify.
 
 ### Knowledge Compounding
-After solving non-trivial problems, capture learnings in docs/solutions/ via /flowstate:compound. Check docs/solutions/ and critical-patterns.md before starting work — past solutions prevent repeated mistakes."
+After solving non-trivial problems, capture learnings in docs/solutions/ via /workflow:compound. Check docs/solutions/ and critical-patterns.md before starting work — past solutions prevent repeated mistakes."
 
 escaped_context=$(escape_for_json "$context")
 
