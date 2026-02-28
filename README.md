@@ -168,8 +168,8 @@ your-project/
 | Role | Model | Count | Why |
 |------|-------|-------|-----|
 | Security review, spec-flow analysis, code quality review, solution extraction, prevention strategy | Opus | 5 | High-consequence reasoning where mistakes are costly |
-| Implementer, architecture review, performance review, simplicity review, pattern review, repo research, best practices, plan deepening | Sonnet | 11 | Strong structured analysis at 2-3x speed, near-Opus SWE-bench |
-| Learnings search, framework docs, brainstorm research, compound research, session-start, spec research | Haiku | 6 | Mechanical grep + classify tasks |
+| Implementer, architecture review, performance review, best practices, plan deepening | Sonnet | 8 | Strong structured analysis at 2-3x speed, near-Opus SWE-bench |
+| Simplicity review, pattern review, repo research, learnings search, framework docs, brainstorm research, compound research, session-start, spec research | Haiku | 9 | Checklist-driven review + grep/classify — Haiku 4.5 matches or beats Sonnet on structured code review (Qodo benchmark) |
 
 ## License
 
