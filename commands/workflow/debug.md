@@ -5,4 +5,4 @@ argument-hint: "[bug description or error message]"
 disable-model-invocation: true
 ---
 
-Invoke the flowstate:systematic-debugging skill for: $ARGUMENTS
+Invoke the flowstate:skill:systematic-debugging skill for: $ARGUMENTS

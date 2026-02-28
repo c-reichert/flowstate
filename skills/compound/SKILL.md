@@ -1,5 +1,5 @@
 ---
-name: compound
+name: skill:compound
 description: >
   Capture solved problems as categorized documentation with YAML frontmatter.
   Trigger words: "compound", "capture learning", "document solution", "that worked",

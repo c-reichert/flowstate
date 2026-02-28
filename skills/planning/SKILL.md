@@ -1,5 +1,5 @@
 ---
-name: planning
+name: skill:planning
 description: >
   Transform brainstorm outputs, feature descriptions, or improvement ideas into
   well-structured implementation plans with TDD-structured tasks. Orchestrates
@@ -164,7 +164,7 @@ After all research phases complete, merge findings into a unified context:
 
 ## Phase 5: Write the Plan
 
-Use the **flowstate:writing-plans** skill to structure the plan document.
+Use the **flowstate:skill:writing-plans** skill to structure the plan document.
 
 Feed it the consolidated research from Phase 4 (learnings, patterns, best practices, edge cases)
 and the feature description from Phase 0. The skill defines the document format, detail levels,
@@ -174,7 +174,7 @@ TDD task structure, learnings integration, and output template.
 
 ## Phase 6: Review the Plan
 
-Before saving, invoke the **flowstate:document-review** skill for a structured self-review of the plan document. This catches completeness gaps, vague language, missing file paths, and YAGNI violations before the plan is committed.
+Before saving, invoke the **flowstate:skill:document-review** skill for a structured self-review of the plan document. This catches completeness gaps, vague language, missing file paths, and YAGNI violations before the plan is committed.
 
 Address any critical or important issues found by the review before proceeding.
 
@@ -272,4 +272,4 @@ You are implementing a feature in [repo]. The design and plan are complete.
 - **NEVER CODE.** This skill produces a plan, not implementation.
 - **The brainstorm is the origin document** -- if one exists, the plan must honor all decisions made there.
 - **Pipeline mode:** If invoked from an automated workflow (LFG or similar), skip all AskUserQuestion calls. Make decisions automatically and proceed to writing the plan without interactive prompts.
-- **Plan structure details** are in the `flowstate:writing-plans` skill -- do not duplicate them here.
+- **Plan structure details** are in the `flowstate:skill:writing-plans` skill -- do not duplicate them here.

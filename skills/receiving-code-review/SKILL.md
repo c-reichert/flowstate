@@ -1,5 +1,5 @@
 ---
-name: receiving-code-review
+name: skill:receiving-code-review
 description: Use when receiving code review feedback, before implementing suggestions. Requires technical rigor and verification -- not performative agreement or blind implementation.
 ---
 

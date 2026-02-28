@@ -1,5 +1,5 @@
 ---
-name: using-worktrees
+name: skill:using-worktrees
 description: Create and manage git worktrees for isolated feature development — used at start of work phase after plan approval
 ---
 

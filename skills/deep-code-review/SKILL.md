@@ -1,5 +1,5 @@
 ---
-name: deep-code-review
+name: skill:deep-code-review
 description: >
   Use for extended multi-agent review with 14+ agents including conditional
   and language-specific reviewers. Appropriate for large changes, architectural

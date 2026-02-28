@@ -1,5 +1,5 @@
 ---
-name: tdd
+name: skill:tdd
 description: Use when implementing any feature or bugfix, before writing implementation code. Enforces strict test-first development — no production code without a failing test.
 ---
 

@@ -5,4 +5,4 @@ disable-model-invocation: true
 argument-hint: "[feature description, brainstorm reference, or improvement idea]"
 ---
 
-Invoke the flowstate:planning skill for: $ARGUMENTS
+Invoke the flowstate:skill:planning skill for: $ARGUMENTS

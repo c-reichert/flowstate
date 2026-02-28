@@ -1,5 +1,5 @@
 ---
-name: verification-before-completion
+name: skill:verification-before-completion
 description: Use when about to claim work is complete, fixed, or passing — requires running verification commands and confirming output before making any success claims. Evidence before assertions, always.
 ---
 

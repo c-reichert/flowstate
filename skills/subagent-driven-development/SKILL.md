@@ -1,5 +1,5 @@
 ---
-name: subagent-driven-development
+name: skill:subagent-driven-development
 description: Use when executing implementation plans with independent tasks — dispatches a fresh subagent per task with two-stage review (spec compliance then code quality) after each.
 ---
 
@@ -52,7 +52,7 @@ Do NOT reference a file. Paste the complete task.]
 - Architecture: [relevant context for where this task fits]
 - Conventions: [from CLAUDE.md]
 
-## TDD Rules (invoke flowstate:tdd skill)
+## TDD Rules (invoke flowstate:skill:tdd skill)
 
 THE IRON LAW: NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
 

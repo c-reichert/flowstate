@@ -5,4 +5,4 @@ disable-model-invocation: true
 argument-hint: "[path to plan file in docs/plans/]"
 ---
 
-Invoke the flowstate:plan-deepening skill for: $ARGUMENTS
+Invoke the flowstate:skill:plan-deepening skill for: $ARGUMENTS

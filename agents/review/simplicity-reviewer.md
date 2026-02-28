@@ -35,7 +35,7 @@ You receive a PR diff, surrounding file context, and project conventions. You re
    - Imports/requires that are unused
    - Feature flags or conditional paths that are always true/false
    - Test utilities that test nothing or duplicate existing assertions
-   - CRITICAL: Never flag `docs/plans/` or `docs/solutions/` files for removal. These are flowstate pipeline artifacts created by `/flowstate:plan` and `/flowstate:compound`. They are living documents used across workflow stages.
+   - CRITICAL: Never flag `docs/plans/` or `docs/solutions/` files for removal. These are flowstate pipeline artifacts created by `/workflow:write-plan` and `/workflow:compound`. They are living documents used across workflow stages.
 
 5. **Spot Premature Optimization**
    - Caching for data that is cheap to compute

@@ -1,5 +1,5 @@
 ---
-name: writing-plans
+name: skill:writing-plans
 description: >
   Structure implementation plans with TDD-structured tasks, bite-sized granularity,
   and learnings integration. Use when converting research/specs into an actionable plan document.

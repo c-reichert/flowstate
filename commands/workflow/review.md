@@ -5,4 +5,4 @@ disable-model-invocation: true
 argument-hint: "[optional: PR number, branch name, or file paths to review]"
 ---
 
-Invoke the flowstate:multi-agent-review skill for: $ARGUMENTS
+Invoke the flowstate:skill:multi-agent-review skill for: $ARGUMENTS

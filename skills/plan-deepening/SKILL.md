@@ -1,5 +1,5 @@
 ---
-name: plan-deepening
+name: skill:plan-deepening
 description: >
   Enhance an existing plan with parallel research agents per section. Adds best
   practices, edge cases, code examples, and learnings references. Does not
@@ -168,7 +168,7 @@ At the **top of the plan** (after YAML frontmatter, before the first section), a
 
 ## Phase 6: Review the Enhanced Plan
 
-Before saving, invoke the **flowstate:document-review** skill to verify the enhanced plan remains coherent. Confirm that new research insights do not contradict existing content, that no sections were accidentally removed, and that the enhancements add genuine value.
+Before saving, invoke the **flowstate:skill:document-review** skill to verify the enhanced plan remains coherent. Confirm that new research insights do not contradict existing content, that no sections were accidentally removed, and that the enhancements add genuine value.
 
 Address any critical or important issues found by the review before proceeding.
 
