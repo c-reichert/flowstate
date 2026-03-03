@@ -115,6 +115,8 @@ Never combine these. Each is its own numbered step with its own expected output.
 ````markdown
 ### Task N: [Component Name]
 
+**depends_on:** [Task M, Task K]  <!-- optional: omit for independent tasks -->
+
 **Files:**
 - Create: `exact/path/to/new_file.py`
 - Modify: `exact/path/to/existing_file.py:123-145`
@@ -147,6 +149,20 @@ git add tests/path/test_file.py src/path/file.py
 git commit -m "feat(scope): add specific feature"
 ```
 ````
+
+### Task Dependencies (Optional)
+
+The `depends_on` field enables parallel execution during `/workflow:work`.
+
+- **List dependencies** if a task requires output from earlier tasks (shared files, generated APIs, DB migrations)
+- **Omit `depends_on`** if a task touches entirely different files with no shared state — this signals it can run in parallel
+- **When ALL tasks omit `depends_on`**, the work phase runs all tasks sequentially (backwards-compatible default)
+- **At least one task must have `depends_on`** to trigger parallel wave analysis
+
+Example: In a plan with 5 tasks where Tasks 1-3 are independent and Task 4 depends on Tasks 1+2, Task 5 depends on Task 4:
+- Wave 1: Tasks 1, 2, 3 (parallel)
+- Wave 2: Task 4 (after 1+2 complete)
+- Wave 3: Task 5 (after 4 completes)
 
 ### Task Quality Rules
 
@@ -217,6 +233,7 @@ detail_level: [minimal|more|a_lot]
 - [ ] Criterion 1
 ## Implementation Tasks
 ### Task 1: [Component]
+**depends_on:** [Task N]  <!-- optional: omit for independent tasks -->
 [TDD steps: test -> verify fail -> implement -> verify pass -> commit]
 ## Sources
 - Brainstorm: docs/brainstorms/[file]
