@@ -67,7 +67,11 @@ Parse all tasks from the plan and create a TodoWrite with dependencies and order
 
 **Invoke the flowstate:subagent-driven-development skill.**
 
-For each task in the plan, the skill handles:
+The skill auto-detects execution mode based on plan dependency metadata:
+- **Sequential** (default): Tasks processed one-by-one with two-stage review per task. Used when no `depends_on` fields exist in the plan.
+- **Parallel** (wave-based): Independent tasks execute simultaneously via team agents, each in its own git worktree. Used when `depends_on` fields reveal parallelizable task waves. The skill internally invokes flowstate:team-task-execution.
+
+For each task (in either mode), the skill handles:
 - Dispatching an implementer subagent with full task text and context
 - Spec compliance review (must pass before quality review)
 - Code quality review (only after spec compliance passes)
@@ -79,6 +83,16 @@ The orchestrator's job during this phase:
 2. **Answer questions** — if a subagent surfaces questions, answer them
 3. **Handle escalations** — if spec review fails after 2 attempts, triage with the user
 4. **Adapt the plan** — if a task is impossible or unnecessary, note it, update the plan, move on
+
+---
+
+### Phase 2.5: Merge Verification (parallel mode only)
+
+If parallel mode was used, verify the merged feature branch before proceeding:
+1. Confirm all task branches have been merged to the feature branch
+2. Run full test suite on the merged feature branch
+3. If failures exist, investigate whether merge introduced regressions
+4. All tests must pass before proceeding to Phase 3
 
 ---
 
@@ -172,3 +186,7 @@ Update the plan's YAML frontmatter: `status: active` to `status: completed`
 | Full suite has unrelated failures | Identify and document. Ask user if pre-existing. |
 | Plan task is impossible or contradicts codebase | Report to user. Suggest alternatives. Update plan. |
 | Dependency between tasks creates circular requirement | Restructure order. Ask user to approve. |
+| Merge conflict between parallel task branches | Attempt auto-resolve. If ambiguous, ask user. Re-run tests after resolution. |
+| Rate limit during parallel execution | Degrade remaining wave tasks to sequential. Continue. |
+| Implementer teammate unresponsive (>5 min) | Timeout, mark task deferred, continue wave. Retry after wave completes. |
+| Team creation fails | Fall back to sequential execution for all tasks. |
