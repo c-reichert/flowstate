@@ -31,7 +31,7 @@ None of these alone delivered what we wanted: strict development discipline *and
 | 1 | `/workflow:brainstorm` | Guided design — one question at a time, explore approaches, validate decisions |
 | 2 | `/workflow:write-plan` | Research agents + TDD implementation plan with exact file paths and test steps |
 | 3 | `/workflow:deepen-plan` | *(optional)* Per-section parallel research to add depth, examples, edge cases |
-| 4 | `/workflow:work` | Worktree isolation → subagent-per-task TDD → two-stage review → ship |
+| 4 | `/workflow:work` | Worktree isolation → subagent-per-task TDD → two-stage review → ship. Supports wave-based parallel execution via team agents when plan tasks declare `depends_on` dependencies. |
 | 5 | `/workflow:review` | 5 parallel review agents (security, performance, simplicity, architecture, patterns) |
 | 5b | `/workflow:deep-review` | Extended 14+ agent swarm with conditional reviewers |
 | 6 | `/workflow:compound` | Capture learnings to `docs/solutions/` — searchable by future sessions |
