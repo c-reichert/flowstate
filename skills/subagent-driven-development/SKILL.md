@@ -11,7 +11,29 @@ Execute a plan by dispatching a fresh subagent per task, with two-stage review a
 
 **Core principle:** Fresh subagent per task + two-stage review (spec then quality) = high quality, fast iteration.
 
-## Per-Task Execution Flow
+## Execution Mode Selection
+
+Before starting the per-task loop, analyze the plan's dependency structure:
+
+1. Parse each task for `depends_on` metadata
+2. **If NO tasks have `depends_on`** → **SEQUENTIAL MODE** (default, all tasks run one-by-one in plan order)
+3. **If `depends_on` fields exist:**
+   a. Build a dependency directed acyclic graph (DAG)
+   b. Compute wave layers via topological sort:
+      - Wave 1: tasks with no dependencies (or `depends_on: []`)
+      - Wave N: tasks whose dependencies all resolve in waves < N
+   c. If any wave has 2+ tasks → invoke **flowstate:team-task-execution** skill with the DAG, task list, feature name, and project context
+   d. If every wave has exactly 1 task → **SEQUENTIAL MODE** (chain dependency, no parallelism possible)
+
+**Announce the decision:**
+- Sequential: "All tasks are dependent — executing sequentially."
+- Parallel: "Found {N} parallelizable waves. Using team agents for parallel execution."
+
+The sequential path below is unchanged. The parallel path is handled entirely by the team-task-execution skill, which returns control after all tasks are complete (or deferred tasks remain for sequential cleanup).
+
+---
+
+## Per-Task Execution Flow (Sequential Mode)
 
 ```
 for each task in plan:
@@ -226,7 +248,7 @@ After each task: mark completed in TodoWrite, update plan checkboxes (`- [ ]` to
 - Start implementation on main/master without explicit user consent
 - Skip either review stage (spec compliance OR code quality)
 - Proceed with unfixed issues from a reviewer
-- Dispatch multiple implementation subagents in parallel (conflicts)
+- Dispatch multiple implementation subagents in parallel WITHOUT worktree isolation (file conflicts). Parallel execution requires the team-task-execution skill with per-task worktrees.
 - Make a subagent read a plan file (provide full text instead)
 - Skip scene-setting context (subagent needs to understand where task fits)
 - Ignore subagent questions (answer before letting them proceed)
