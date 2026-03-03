@@ -1,7 +1,7 @@
 ---
 title: "feat: Add Team Agent Parallel Execution to /workflow:work"
 type: feat
-status: active
+status: completed
 date: 2026-03-03
 detail_level: more
 ---
