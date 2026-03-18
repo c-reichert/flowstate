@@ -1,7 +1,7 @@
 ---
 name: workflow:work-forge
 description: "Execute an implementation plan for Atlassian Forge apps with automated verification (yarn lint, tsc), structured tunnel verification, worktree isolation, subagent dispatch, and two-stage code review."
-disable-model-invocation: true
+disable-model-invocation: false
 argument-hint: "[path to plan file in docs/plans/]"
 ---
 
