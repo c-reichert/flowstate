@@ -1,5 +1,5 @@
 ---
-name: skill:deep-code-review
+name: deep-code-review
 description: >
   Use for extended multi-agent review with 14+ agents including conditional
   and language-specific reviewers. Appropriate for large changes, architectural
@@ -157,7 +157,7 @@ Extended agents use Sonnet for bounded, focused checks. The core reviewers (Phas
 Merge extended agent findings with core review findings:
 
 1. **Deduplicate** across all agents (core + extended may flag same issues)
-2. **Assign priorities** using the same P1/P2/P3 scale from the multi-agent-review skill
+2. **Assign priorities** using the same P1/P2/P3 scale from the flowstate:multi-agent-review skill
 3. **Create todo files** for new findings in `todos/` directory
 4. **Flag cross-cutting concerns** that multiple agents independently identified
 
@@ -191,7 +191,7 @@ Merge extended agent findings with core review findings:
 
 ## Phase 6: Resolve
 
-Follow the same resolution protocol as the multi-agent-review skill:
+Follow the same resolution protocol as the flowstate:multi-agent-review skill:
 
 1. **Fix P1s immediately** — blocks merge
 2. **Triage P2/P3 with user** — fix now, defer, or won't fix

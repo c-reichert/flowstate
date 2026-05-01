@@ -1,5 +1,5 @@
 ---
-name: skill:systematic-debugging
+name: systematic-debugging
 description: Use when encountering any bug, test failure, or unexpected behavior. Enforces a disciplined reproduce-isolate-diagnose-fix-verify cycle. No guessing allowed.
 ---
 

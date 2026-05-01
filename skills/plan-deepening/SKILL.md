@@ -1,5 +1,5 @@
 ---
-name: skill:plan-deepening
+name: plan-deepening
 description: >
   Enhance an existing plan with parallel research agents per section. Adds best
   practices, edge cases, code examples, and learnings references. Does not
@@ -225,4 +225,3 @@ Use the **AskUserQuestion tool** to present:
 - Prioritize **actionable insights** over general knowledge
 - **Learnings references** are the most valuable additions -- they represent hard-won knowledge
 - If Context7 MCP is not available, fall back to WebSearch for framework documentation
-- **Pipeline mode:** If invoked from an automated workflow, skip AskUserQuestion calls and proceed automatically

@@ -1,17 +1,18 @@
 ---
-name: skill:team-task-execution
+name: team-task-execution
 description: >
-  Wave-based parallel task execution using team agents with worktree isolation.
-  Invoked by subagent-driven-development when plan has parallelizable tasks.
-  Spawns up to 3 implementer teammates per wave, each in its own worktree.
-  Reviews stay subagent-dispatched. Merges worktrees after each wave.
+  Use when subagent-driven-development detects parallelizable task waves in an
+  approved plan. Spawns up to 3 implementer teammates per wave, each in its own
+  worktree, then merges worktrees between waves. Triggered internally by the
+  flowstate:subagent-driven-development skill — not user-invoked. Triggers:
+  "parallel waves", "team execution", or invocation from subagent-driven-development.
 ---
 
 # Team Task Execution
 
 ## Overview
 
-Execute plan tasks in parallel using Claude Code's team agents pattern. This skill is invoked by the subagent-driven-development skill when dependency analysis reveals parallelizable waves.
+Execute plan tasks in parallel using Claude Code's team agents pattern. This skill is invoked by the flowstate:subagent-driven-development skill when dependency analysis reveals parallelizable waves.
 
 **Receives from caller:**
 - Dependency DAG (tasks with `depends_on` relationships)
@@ -100,7 +101,7 @@ while unfinished tasks exist in TaskList:
       a. Dispatch SPEC COMPLIANCE reviewer as a SUBAGENT (not teammate):
          - Model: Sonnet
          - Target: the implementer's worktree path
-         - Prompt: standard spec reviewer template from subagent-driven-development skill
+         - Prompt: standard spec reviewer template from flowstate:subagent-driven-development skill
          - Input: full task spec + worktree path to read actual code from
 
       b. If spec review APPROVED:

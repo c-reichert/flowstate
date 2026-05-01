@@ -1,7 +1,7 @@
 ---
 name: workflow:setup
 description: "Learn how Flowstate works — shows the workflow pipeline, available commands, and getting-started guide."
-disable-model-invocation: true
+disable-model-invocation: false
 ---
 
 Present the following information to the user clearly and concisely:

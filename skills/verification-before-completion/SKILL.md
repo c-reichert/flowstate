@@ -1,5 +1,5 @@
 ---
-name: skill:verification-before-completion
+name: verification-before-completion
 description: Use when about to claim work is complete, fixed, or passing — requires running verification commands and confirming output before making any success claims. Evidence before assertions, always.
 ---
 
@@ -19,7 +19,7 @@ Claiming work is complete without verification is dishonesty, not efficiency.
 NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE
 ```
 
-If you haven't run the verification command in this message, you cannot claim it passes.
+Without having run the verification command in this message, the claim that it passes is unsupported. Why: stale or remembered results drift from reality — only a fresh run reflects the current state of the code.
 
 ## The Gate Function
 
@@ -50,16 +50,16 @@ Skip any step = lying, not verifying
 
 ## Red Flags — STOP Immediately
 
-If you catch yourself doing any of these, stop. Run the actual verification. Then proceed.
+Stop on any of these patterns, run the actual verification, then proceed.
 
 - Using "should", "probably", "seems to" about results
 - Expressing satisfaction before verification ("Great!", "Perfect!", "Done!")
 - About to commit/push/PR without running tests
 - Trusting a subagent's success report without checking independently
-- Thinking "just this once, I don't need to verify"
-- Skipping the full suite because "I only changed one file"
+- Thinking "just this once, no need to verify"
+- Skipping the full suite because "only one file changed"
 - Assuming cached results are still valid after changes
-- **ANY wording implying success without having run verification**
+- **Any wording implying success without having run verification**
 
 ## Rationalization Prevention
 

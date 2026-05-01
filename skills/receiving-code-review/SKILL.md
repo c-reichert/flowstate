@@ -1,5 +1,5 @@
 ---
-name: skill:receiving-code-review
+name: receiving-code-review
 description: Use when receiving code review feedback, before implementing suggestions. Requires technical rigor and verification -- not performative agreement or blind implementation.
 ---
 
@@ -12,15 +12,15 @@ Code review requires technical evaluation, not emotional performance.
 ## The Protocol
 
 ```
-1. READ      — Complete feedback without reacting
-2. UNDERSTAND — Restate the issue in your own words
+1. READ      — Read complete feedback without reacting
+2. UNDERSTAND — Restate the issue in plain language
 3. VERIFY    — Check against the actual codebase
 4. EVALUATE  — Technically sound for THIS codebase?
 5. RESPOND   — Fix it, or push back with technical reasoning
 6. IMPLEMENT — One item at a time, test each fix
 ```
 
-If you cannot explain an issue clearly, you do not understand it yet. Go back to step 2.
+If an issue cannot be explained clearly, understanding is incomplete — return to step 2. Why: implementing on shaky understanding is how reviewer-suggested fixes introduce new bugs.
 
 ## Handling Unclear Feedback
 
@@ -31,11 +31,11 @@ IF any item is unclear:
   WAIT until clear before implementing anything
 ```
 
-Items may be related. Partial understanding = wrong implementation.
+Items may be related. Partial understanding leads to wrong implementation.
 
-**Example:** Feedback says "Fix items 1-6". You understand 1, 2, 3, 6 but not 4, 5.
+**Example:** Feedback says "Fix items 1-6". Items 1, 2, 3, 6 are clear; 4 and 5 are not.
 - WRONG: Implement 1, 2, 3, 6 now. Ask about 4, 5 later.
-- RIGHT: "Understand 1, 2, 3, 6. Need clarification on 4 and 5 before proceeding."
+- RIGHT: "Items 1, 2, 3, 6 are clear. Need clarification on 4 and 5 before proceeding."
 
 ## YAGNI Check Before Implementing
 
@@ -52,11 +52,11 @@ grep -r "function_name\|ClassName\|method_name" --include="*.py" .
 ## When to Push Back
 
 Push back when:
-- **Breaks existing functionality** -- does not account for callers or side effects
-- **Reviewer lacks full context** -- they see a diff, not the full system
-- **Violates YAGNI** -- improving unused or rarely-used code
+- **Breaks existing functionality** -- the suggestion does not account for callers or side effects
+- **Reviewer lacks full context** -- the reviewer sees a diff, not the full system
+- **Violates YAGNI** -- the suggestion improves unused or rarely-used code
 - **Technically incorrect for this stack** -- generic advice that does not apply
-- **Conflicts with prior architectural decisions** -- discuss with your human partner first
+- **Conflicts with prior architectural decisions** -- discuss with the human partner first
 
 How: technical reasoning, reference working tests/code, ask specific questions.
 
@@ -80,14 +80,14 @@ DON'T: "You're absolutely right!" / "Great point!" / "Thanks for catching that!"
 DON'T: Any performative agreement or gratitude expression
 ```
 
-Actions speak. The fix itself shows you heard the feedback.
+Actions speak. The fix itself shows the feedback was heard.
 
 ## Correcting Wrong Pushback
 
-If you pushed back and were wrong:
+After pushing back and turning out to be wrong:
 ```
 DO:    "Checked [X] and it does [Y]. Implementing now."
-DON'T: Long apology, defending why you pushed back, over-explaining.
+DON'T: Long apology, defending the original pushback, over-explaining.
 ```
 
 State the correction factually. Move on.

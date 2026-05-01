@@ -1,5 +1,5 @@
 ---
-name: skill:finishing-a-branch
+name: finishing-a-branch
 description: Use when implementation is complete and all tests pass — guides branch completion by presenting structured options for merge, PR, or cleanup.
 ---
 

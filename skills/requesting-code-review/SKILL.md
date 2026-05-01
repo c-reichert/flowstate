@@ -1,5 +1,5 @@
 ---
-name: skill:requesting-code-review
+name: requesting-code-review
 description: Use when requesting code review after implementing features, before merging, when stuck, or after fixing complex bugs. Structures what to provide reviewers and what output to expect.
 ---
 

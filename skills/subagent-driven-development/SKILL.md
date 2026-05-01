@@ -1,5 +1,5 @@
 ---
-name: skill:subagent-driven-development
+name: subagent-driven-development
 description: Use when executing implementation plans with independent tasks — dispatches a fresh subagent per task with two-stage review (spec compliance then code quality) after each.
 ---
 
@@ -29,7 +29,7 @@ Before starting the per-task loop, analyze the plan's dependency structure:
 - Sequential: "All tasks are dependent — executing sequentially."
 - Parallel: "Found {N} parallelizable waves. Using team agents for parallel execution."
 
-The sequential path below is unchanged. The parallel path is handled entirely by the team-task-execution skill, which returns control after all tasks are complete (or deferred tasks remain for sequential cleanup).
+The sequential path below is unchanged. The parallel path is handled entirely by the flowstate:team-task-execution skill, which returns control after all tasks are complete (or deferred tasks remain for sequential cleanup).
 
 ---
 
@@ -248,7 +248,7 @@ After each task: mark completed in TodoWrite, update plan checkboxes (`- [ ]` to
 - Start implementation on main/master without explicit user consent
 - Skip either review stage (spec compliance OR code quality)
 - Proceed with unfixed issues from a reviewer
-- Dispatch multiple implementation subagents in parallel WITHOUT worktree isolation (file conflicts). Parallel execution requires the team-task-execution skill with per-task worktrees.
+- Dispatch multiple implementation subagents in parallel WITHOUT worktree isolation (file conflicts). Parallel execution requires the flowstate:team-task-execution skill with per-task worktrees.
 - Make a subagent read a plan file (provide full text instead)
 - Skip scene-setting context (subagent needs to understand where task fits)
 - Ignore subagent questions (answer before letting them proceed)

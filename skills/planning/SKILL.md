@@ -1,5 +1,5 @@
 ---
-name: skill:planning
+name: planning
 description: >
   Transform brainstorm outputs, feature descriptions, or improvement ideas into
   well-structured implementation plans with TDD-structured tasks. Orchestrates
@@ -8,11 +8,13 @@ description: >
   session when ready to move to implementation.
 ---
 
-<IMPORTANT>
-This skill is the Flowstate planning workflow. It is NOT Claude Code's built-in plan mode.
-Do NOT call EnterPlanMode or ExitPlanMode at any point during this workflow.
-If you feel the urge to enter "plan mode", STOP — just follow the phases below instead.
-</IMPORTANT>
+> **Important — read first**
+>
+> This skill is the Flowstate planning workflow. It is NOT Claude Code's built-in plan mode.
+> Do not call EnterPlanMode or ExitPlanMode at any point during this workflow.
+> If feeling the urge to enter "plan mode", stop — follow the phases below instead.
+> Why: the built-in plan mode runs a different state machine and will derail the research →
+> spec-flow → write sequence this skill orchestrates.
 
 # Planning: From Idea to Implementation Plan
 
@@ -75,9 +77,8 @@ Refine the idea through collaborative dialogue using the **AskUserQuestion tool*
 
 ## Phase 1: Parallel Local Research (Always Runs)
 
-<thinking>
-First, I need to understand the project's conventions, existing patterns, and any documented learnings. This is fast and local -- it informs whether external research is needed.
-</thinking>
+> Local context first: project conventions, existing patterns, and documented
+> learnings inform whether external research is needed. This pass is fast.
 
 Run these agents **in parallel** to gather local context:
 
@@ -271,5 +272,4 @@ You are implementing a feature in [repo]. The design and plan are complete.
 
 - **NEVER CODE.** This skill produces a plan, not implementation.
 - **The brainstorm is the origin document** -- if one exists, the plan must honor all decisions made there.
-- **Pipeline mode:** If invoked from an automated workflow (LFG or similar), skip all AskUserQuestion calls. Make decisions automatically and proceed to writing the plan without interactive prompts.
 - **Plan structure details** are in the `flowstate:writing-plans` skill -- do not duplicate them here.

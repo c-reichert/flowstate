@@ -1,6 +1,10 @@
 ---
-name: skill:using-worktrees
-description: Create and manage git worktrees for isolated feature development — used at start of work phase after plan approval
+name: using-worktrees
+description: >
+  Use at the start of the work phase, after plan approval and before
+  implementation begins, to create an isolated git worktree for the feature
+  branch. Triggers: "create worktree", "isolate work", "set up branch",
+  "start implementing", or invocation from flowstate:subagent-driven-development.
 ---
 
 # Using Worktrees

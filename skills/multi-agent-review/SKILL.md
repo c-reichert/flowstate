@@ -1,5 +1,5 @@
 ---
-name: skill:multi-agent-review
+name: multi-agent-review
 description: >
   Use when performing multi-agent code review after implementing features,
   before merging, or when reviewing PRs. Runs 5 core review agents in parallel

@@ -1,5 +1,5 @@
 ---
-name: skill:writing-plans
+name: writing-plans
 description: >
   Structure implementation plans with TDD-structured tasks, bite-sized granularity,
   and learnings integration. Use when converting research/specs into an actionable plan document.
@@ -16,7 +16,7 @@ Every task is bite-sized and TDD-structured. DRY. YAGNI. TDD. Frequent commits.
 Assume the implementer is a skilled developer but knows nothing about the toolset,
 problem domain, or local conventions. Assume they don't know good test design.
 
-**Announce at start:** "I'm using the writing-plans skill to structure the plan."
+**Announce at start:** "I'm using the flowstate:writing-plans skill to structure the plan."
 
 ---
 

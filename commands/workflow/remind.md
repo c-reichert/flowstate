@@ -1,7 +1,7 @@
 ---
 name: workflow:remind
 description: "Re-inject Flowstate's core rules and workflow summary. Use when Claude drifts from the workflow or forgets the pipeline order."
-disable-model-invocation: true
+disable-model-invocation: false
 ---
 
 CONTEXT INJECTION — Read and internalize the following rules immediately.

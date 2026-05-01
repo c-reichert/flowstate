@@ -1,7 +1,7 @@
 ---
 name: workflow:work
 description: "Execute an implementation plan task-by-task with strict TDD discipline, worktree isolation, subagent dispatch, and two-stage code review. Produces tested, committed, PR-ready code."
-disable-model-invocation: true
+disable-model-invocation: false
 argument-hint: "[path to plan file in docs/plans/]"
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: skill:document-review
+name: document-review
 description: Use to review brainstorm or plan documents before proceeding to the next workflow step. Applies structured self-review for completeness, clarity, consistency, feasibility, and YAGNI.
 ---
 

@@ -1,20 +1,11 @@
 ---
-name: skill:compound
+name: compound
 description: >
-  Capture solved problems as categorized documentation with YAML frontmatter.
-  Trigger words: "compound", "capture learning", "document solution", "that worked",
-  "it's fixed", "working now", "problem solved", "that did it", "doc-fix"
-allowed-tools:
-  - Read
-  - Write
-  - Bash
-  - Grep
-  - Glob
-  - SubagentTool
-  - AskUserQuestion
-preconditions:
-  - Problem has been solved (not in-progress)
-  - Solution has been verified working
+  Use after a problem has been solved and the solution verified working —
+  captures the lesson as categorized documentation in docs/solutions/ with
+  YAML frontmatter so future sessions can find it. Triggers: "compound",
+  "capture learning", "document solution", "that worked", "it's fixed",
+  "working now", "problem solved", "that did it", "doc-fix".
 ---
 
 # Compound Knowledge Capture Skill

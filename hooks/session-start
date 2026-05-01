@@ -29,6 +29,7 @@ brainstorm → write-plan → [deepen-plan] → work → review → compound
   /workflow:write-plan    - Create TDD implementation plan with research agents
   /workflow:deepen-plan   - Enhance plan with parallel research per section
   /workflow:work          - Execute plan with TDD, worktrees, subagent dispatch
+  /workflow:work-forge    - Execute plan for Atlassian Forge apps with tunnel verification
   /workflow:review        - 5-agent parallel code review with prioritized findings
   /workflow:deep-review   - Extended 14+ agent review with conditional reviewers
   /workflow:compound      - Capture learnings to docs/solutions/ for future sessions

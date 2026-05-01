@@ -1,5 +1,5 @@
 ---
-name: skill:brainstorming
+name: brainstorming
 description: >
   Use before any creative work — features, components, changes, or modifications.
   Guides structured design through collaborative dialogue before implementation.
@@ -11,12 +11,13 @@ description: >
 
 Turn rough ideas into validated designs through guided dialogue. Prevent premature implementation.
 
-<HARD-GATE>
-Do NOT invoke any implementation skill, write any code, scaffold any project,
-or take any implementation action until you have presented a design and the
-user has approved it. This applies to EVERY project regardless of perceived
-simplicity.
-</HARD-GATE>
+> **Hard gate — read first**
+>
+> Do not invoke any implementation skill, write any code, scaffold any project,
+> or take any implementation action until a design has been presented and the
+> user has approved it. This applies to every project regardless of perceived
+> simplicity. Why: skipping this step is where unexamined assumptions cause the
+> most wasted work — even "simple" projects benefit from a quick design pass.
 
 ## Anti-Pattern: "This Is Too Simple To Need A Design"
 
