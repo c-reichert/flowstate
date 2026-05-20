@@ -20,3 +20,11 @@ A Claude Code plugin providing structured thinking workflows: brainstorming, pla
 
 ## Defend Research Before Reverting
 When you have completed research that supports a specific recommendation, and the user immediately overrides it without engaging with the evidence, present the key evidence before making changes. A single sentence like "My research found X — would you like to see the evidence before I revert?" prevents costly flip-flops where work gets done, undone, and redone. This applies to any researched recommendation, not just prompting conventions.
+
+<!-- retro:managed:start -->
+## Retro-Discovered Patterns
+
+- When researching resolution.de internal processes (change management, approval workflows, policies), always read from Confluence — do NOT rely on training data or hallucinated org facts. Christian explicitly corrected this: 'Use Confluence as the source for processes etc.'
+- When a workflow step completes and stakeholders need to be informed, update the related Jira tasks instead of sending emails. Christian explicitly said 'no need to email - just update the related Tasks' when Claude offered to email involved parties.
+
+<!-- retro:managed:end -->
