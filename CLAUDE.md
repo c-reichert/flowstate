@@ -20,3 +20,10 @@ A Claude Code plugin providing structured thinking workflows: brainstorming, pla
 
 ## Defend Research Before Reverting
 When you have completed research that supports a specific recommendation, and the user immediately overrides it without engaging with the evidence, present the key evidence before making changes. A single sentence like "My research found X — would you like to see the evidence before I revert?" prevents costly flip-flops where work gets done, undone, and redone. This applies to any researched recommendation, not just prompting conventions.
+
+<!-- retro:managed:start -->
+## Retro-Discovered Patterns
+
+- Publish skill — playground target access URL is `https://playground.mesh.cr77.dev` (mesh DNS), NOT the IP `192.168.42.31`. IP is for rsync deploy only. User corrected in session a9a0c6f6: 'you need to take the mesh dns url for the playground to access (not to rsync). update the skill.' Always use mesh DNS URL when verifying or linking to published playground artifacts.
+
+<!-- retro:managed:end -->
