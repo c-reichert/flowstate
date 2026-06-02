@@ -20,3 +20,19 @@ A Claude Code plugin providing structured thinking workflows: brainstorming, pla
 
 ## Defend Research Before Reverting
 When you have completed research that supports a specific recommendation, and the user immediately overrides it without engaging with the evidence, present the key evidence before making changes. A single sentence like "My research found X — would you like to see the evidence before I revert?" prevents costly flip-flops where work gets done, undone, and redone. This applies to any researched recommendation, not just prompting conventions.
+
+<!-- retro:managed:start -->
+## Retro-Discovered Patterns
+
+- Flowstate rules, directives, and skill instructions should always include a 'Why' explanation — not just the rule itself. Christian stated this explicitly in session 4704fd03: 'Another one I think was to include the why in rules.' This is consistent with Anthropic's Opus 4.6 prompting recommendation to provide reasoning context.
+
+**Why:** Rules with 'why' help agents make better edge-case judgments instead of blindly following instructions they don't understand.
+
+**How to apply:** When writing or updating any flowstate SKILL.md rule, add a **Why:** line after the rule statement, explaining the motivation or the incident that prompted it.
+- When adding comments to Jira via MCP (addCommentToJiraIssue), the call frequently times out. If the comment fails or times out, provide the full comment text as output so Christian can paste it manually.
+
+**Why:** Christian explicitly noted 'The MCP always seems to time out' when trying to add a comment in session 68f7c469. Retrying blindly wastes time.
+
+**How to apply:** After any failed Jira comment MCP call, immediately output the formatted comment text with an instruction to paste it manually.
+
+<!-- retro:managed:end -->
