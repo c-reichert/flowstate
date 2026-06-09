@@ -20,3 +20,28 @@ A Claude Code plugin providing structured thinking workflows: brainstorming, pla
 
 ## Defend Research Before Reverting
 When you have completed research that supports a specific recommendation, and the user immediately overrides it without engaging with the evidence, present the key evidence before making changes. A single sentence like "My research found X — would you like to see the evidence before I revert?" prevents costly flip-flops where work gets done, undone, and redone. This applies to any researched recommendation, not just prompting conventions.
+
+<!-- retro:managed:start -->
+## Retro-Discovered Patterns
+
+- DevonThink (DT) filing workflow — established 2026-05-29 session ec5a8004:
+
+**Role split:** DT = raw document archive (invoices, scans, PDFs, legal docs). Obsidian LifeOS Vault = knowledge/entities/semantic layer. Complementary, not duplicate.
+
+**After DT import:** Move source file to `/Users/cr/Dropbox/DevonThink Actions - Imported` — signals the file has been processed.
+
+**Critical rule:** NEVER create DT groups/folders without Christian's explicit permission. He interrupted a tool call specifically to enforce this.
+
+**Tax documents:** Add label `steuern` + tax year label(s) (e.g. `2024`). If doc spans multiple years, add each year as a separate label.
+
+**Batch size for triage:** Process Downloads in batches with numbered items for easy reference. Increased from 5 → 10 → 15 → 20 over the session.
+
+**Before trashing:** Always show the table/list first so Christian can review before any destructive action. He corrected this: 'before you trash things give me the table in the future.'
+
+**DT Personal DB inbox:** Also process using same batch-and-decide pattern.
+
+**Why:** Christian uses DT as his permanent document archive; mistakes are hard to undo and group structure is deliberate.
+
+**How to apply:** When working on downloads triage or DT filing tasks, follow these rules exactly.
+
+<!-- retro:managed:end -->
