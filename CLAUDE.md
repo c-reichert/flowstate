@@ -20,3 +20,20 @@ A Claude Code plugin providing structured thinking workflows: brainstorming, pla
 
 ## Defend Research Before Reverting
 When you have completed research that supports a specific recommendation, and the user immediately overrides it without engaging with the evidence, present the key evidence before making changes. A single sentence like "My research found X — would you like to see the evidence before I revert?" prevents costly flip-flops where work gets done, undone, and redone. This applies to any researched recommendation, not just prompting conventions.
+
+<!-- retro:managed:start -->
+## Retro-Discovered Patterns
+
+- DevonThink filing workflow rules (confirmed sessions ec5a8004, 2026-05-29):
+
+1. **Post-import**: After importing a file into DT, move the source file to `/Users/cr/Dropbox/DevonThink Actions - Imported`. Then delete the original ZIP if applicable.
+2. **No group creation without explicit permission**: Do NOT create new DT groups/folders unless Christian explicitly requests it. Exact quote: 'don't create groups without my express permission'.
+3. **Tax documents**: Add `steuern` label AND the tax year(s) as additional labels (e.g. `2024`, `2025`). If a doc spans multiple years, add each year as a separate label.
+4. **Batch triage format**: Present files in numbered batches (started at 5, grew to 10, then 20). Show a decision table — number, filename (with rename suggestion if poorly named), suggested DT destination, and proposed action. Wait for approval before executing.
+5. **DT Personal DB**: Inbox items follow same triage pattern — suggest, Christian decides.
+
+**Why:** Established across a marathon ~1074-file Downloads triage session. These rules emerged from real corrections during that session.
+
+**How to apply:** Any time files are being imported into DevonThink or the Downloads folder is being triaged.
+
+<!-- retro:managed:end -->
