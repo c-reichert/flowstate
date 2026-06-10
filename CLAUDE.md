@@ -20,3 +20,20 @@ A Claude Code plugin providing structured thinking workflows: brainstorming, pla
 
 ## Defend Research Before Reverting
 When you have completed research that supports a specific recommendation, and the user immediately overrides it without engaging with the evidence, present the key evidence before making changes. A single sentence like "My research found X — would you like to see the evidence before I revert?" prevents costly flip-flops where work gets done, undone, and redone. This applies to any researched recommendation, not just prompting conventions.
+
+<!-- retro:managed:start -->
+## Retro-Discovered Patterns
+
+- DevonThink import workflow rules (LifeOS project):
+
+1. After importing a file into DT, move the original source file to `/Users/cr/Dropbox/DevonThink Actions - Imported`
+2. NEVER create DT groups/folders without Christian's explicit permission. He interrupted: 'don't create groups without my express permission'
+3. Tax documents get a `steuern` label plus the tax year as a label (e.g., `2024`). Multi-year documents get one label per year.
+4. File into existing DT folder structure — do not invent new groups
+5. DT Personal DB inbox items: suggest filing + tagging, Christian decides before execution
+
+**Why:** DT folder structure is curated; unilateral group creation would pollute it. Import tracking folder prevents duplicate imports on future passes.
+
+**How to apply:** Any time files are being imported into DT during LifeOS sessions, follow this workflow strictly.
+
+<!-- retro:managed:end -->
